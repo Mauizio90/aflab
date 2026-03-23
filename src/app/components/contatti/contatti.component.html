@@ -42,11 +42,19 @@
       <div class="contatti-form-wrap" id="prenota-form">
         <p class="form-title">Compila il form per richiedere un<br>appuntamento o maggiori informazioni</p>
 
-        <div *ngIf="invioInCorso === false && form.pristine === false" class="success-box" style="display:none">
-          <mat-icon>check_circle</mat-icon> Richiesta inviata!
+        <!-- Banner di conferma post-invio -->
+        <div *ngIf="inviatoConSuccesso" class="success-box">
+          <mat-icon>check_circle</mat-icon>
+          <div>
+            <strong>Richiesta inviata con successo!</strong>
+            <p>Ti ricontatteremo entro 24 ore per confermare il tuo appuntamento.</p>
+            <button mat-stroked-button class="nuova-btn" (click)="inviatoConSuccesso = false">
+              Invia un'altra richiesta
+            </button>
+          </div>
         </div>
 
-        <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <form *ngIf="!inviatoConSuccesso" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
           <div class="form-row">
             <mat-form-field appearance="outline">
               <mat-label>Nome</mat-label>
@@ -86,11 +94,17 @@
             <textarea matInput formControlName="messaggio" rows="3" placeholder="Descrivi brevemente la tua richiesta…"></textarea>
           </mat-form-field>
 
+          <!-- Avviso anti-spam / countdown -->
+          <div *ngIf="bloccatoMsg" class="spam-warning">
+            <mat-icon>schedule</mat-icon>
+            <span>{{ bloccatoMsg }}</span>
+          </div>
+
           <button
             mat-raised-button
             type="submit"
             class="submit-btn"
-            [disabled]="invioInCorso"
+            [disabled]="invioInCorso || !!bloccatoMsg"
           >
             {{ invioInCorso ? 'Invio in corso…' : 'INVIA RICHIESTA' }}
           </button>

@@ -1,9 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { EmailService } from '../../services/email.service';
 import { PrenotazioneService } from '../../services/prenotazione.service';
+import { SpamGuardService } from '../../services/spam-guard.service';
 
 @Component({
   selector: 'app-contatti',
@@ -12,8 +13,14 @@ import { PrenotazioneService } from '../../services/prenotazione.service';
 })
 export class ContattiComponent implements OnInit, OnDestroy {
   form: FormGroup;
-  invioInCorso = false;
+  invioInCorso  = false;
+  bloccatoMsg: string | null = null;
+  secondiRimanenti = 0;
+  /** Mostra il banner di conferma dopo un invio riuscito */
+  inviatoConSuccesso = false;
+
   private sub!: Subscription;
+  private countdownInterval: ReturnType<typeof setInterval> | null = null;
 
   servizi = [
     'Biologo Nutrizionista',
@@ -51,6 +58,8 @@ export class ContattiComponent implements OnInit, OnDestroy {
     private emailService: EmailService,
     private snackBar: MatSnackBar,
     private prenotazioneService: PrenotazioneService,
+    private spamGuard: SpamGuardService,
+    private cdr: ChangeDetectorRef,
   ) {
     this.form = this.fb.group({
       nome:      ['', [Validators.required, Validators.minLength(2)]],
@@ -63,7 +72,6 @@ export class ContattiComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // Pre-seleziona lo specialista se arriva dalla sezione Visite Specialistiche
     this.sub = this.prenotazioneService.specialistaSelezionato$.subscribe(nome => {
       if (nome) {
         this.form.patchValue({ servizio: nome });
@@ -74,6 +82,7 @@ export class ContattiComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
+    this.clearCountdown();
   }
 
   async onSubmit(): Promise<void> {
@@ -81,12 +90,27 @@ export class ContattiComponent implements OnInit, OnDestroy {
       this.form.markAllAsTouched();
       return;
     }
+
+    // ── Spam guard ──────────────────────────────────────────────
+    const guard = this.spamGuard.puoInviare(this.form.value);
+    if (!guard.ok) {
+      this.bloccatoMsg = guard.messaggio ?? 'Richiesta bloccata.';
+      if (guard.secondiRimanenti) {
+        this.avviaCountdown(guard.secondiRimanenti);
+      }
+      return;
+    }
+    // ────────────────────────────────────────────────────────────
+
     this.invioInCorso = true;
+    this.bloccatoMsg  = null;
+    this.clearCountdown();
+
     try {
       await this.emailService.inviaPrenotazione(this.form.value);
-      this.snackBar.open('✅ Richiesta inviata! Ti contatteremo presto.', 'Chiudi', {
-        duration: 6000, panelClass: ['snack-success']
-      });
+      // Registra l'invio riuscito
+      this.spamGuard.registraInvio(this.form.value);
+      this.inviatoConSuccesso = true;
       this.form.reset();
     } catch {
       this.snackBar.open('❌ Errore nell\'invio. Riprova o chiamaci.', 'Chiudi', {
@@ -105,5 +129,32 @@ export class ContattiComponent implements OnInit, OnDestroy {
     if (ctrl.errors['minlength']) return 'Valore troppo corto';
     if (ctrl.errors['pattern'])   return 'Formato non valido';
     return '';
+  }
+
+  // ── Countdown helpers ──────────────────────────────────────────
+  private avviaCountdown(secondi: number): void {
+    this.secondiRimanenti = secondi;
+    this.clearCountdown();
+    this.countdownInterval = setInterval(() => {
+      this.secondiRimanenti--;
+      if (this.secondiRimanenti <= 0) {
+        this.clearCountdown();
+        this.bloccatoMsg = null;
+      } else {
+        // Aggiorna il messaggio con il tempo rimanente
+        const m = Math.floor(this.secondiRimanenti / 60);
+        const s = this.secondiRimanenti % 60;
+        const label = m > 0 ? `${m}m ${s}s` : `${s}s`;
+        this.bloccatoMsg = `Hai appena inviato una richiesta. Puoi inviarne un'altra tra ${label}.`;
+      }
+      this.cdr.detectChanges();
+    }, 1000);
+  }
+
+  private clearCountdown(): void {
+    if (this.countdownInterval !== null) {
+      clearInterval(this.countdownInterval);
+      this.countdownInterval = null;
+    }
   }
 }

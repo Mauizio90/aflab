@@ -41,9 +41,14 @@
         </div>
 
         <form *ngIf="!inviato" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
-          <mat-form-field appearance="outline" class="form-field-plain">
-            <input matInput formControlName="nomeCognome" placeholder="Nome e Cognome" />
-          </mat-form-field>
+          <div class="booking-form__row">
+            <mat-form-field appearance="outline" class="form-field-plain">
+              <input matInput formControlName="nome" placeholder="Nome" />
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-field-plain">
+              <input matInput formControlName="cognome" placeholder="Cognome" />
+            </mat-form-field>
+          </div>
 
           <mat-form-field appearance="outline" class="form-field-plain">
             <input matInput formControlName="telefono" placeholder="Telefono" />

@@ -50,7 +50,8 @@ export class HeroComponent implements OnDestroy {
     private cdr: ChangeDetectorRef,
   ) {
     this.form = this.fb.group({
-      nomeCognome:  ['', [Validators.required, Validators.minLength(3)]],
+      nome:         ['', [Validators.required, Validators.minLength(2)]],
+      cognome:      ['', [Validators.required, Validators.minLength(2)]],
       telefono:     ['', [Validators.required, Validators.pattern(/^\+?[\d\s\-()]{7,}$/)]],
       email:        ['', [Validators.required, Validators.email]],
       visita:       [''],
@@ -83,8 +84,8 @@ export class HeroComponent implements OnDestroy {
 
     try {
       await this.emailService.inviaPrenotazione({
-        nome:     this.form.value.nomeCognome,
-        cognome:  '',
+        nome:     this.form.value.nome,
+        cognome:  this.form.value.cognome,
         email:    this.form.value.email,
         telefono: this.form.value.telefono,
         servizio: this.form.value.visita,

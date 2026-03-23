@@ -63,11 +63,17 @@
             <textarea matInput formControlName="informazioni" placeholder="Informazioni" rows="3"></textarea>
           </mat-form-field>
 
+          <!-- Avviso anti-spam / countdown -->
+          <div *ngIf="bloccatoMsg" class="booking-form__spam-warning">
+            <mat-icon>schedule</mat-icon>
+            <span>{{ bloccatoMsg }}</span>
+          </div>
+
           <button
             mat-raised-button
             type="submit"
             class="booking-form__submit"
-            [disabled]="invioInCorso"
+            [disabled]="invioInCorso || !!bloccatoMsg"
           >
             {{ invioInCorso ? 'Invio in corso…' : 'INVIA RICHIESTA' }}
           </button>

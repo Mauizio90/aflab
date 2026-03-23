@@ -154,3 +154,27 @@
   // Il form è disponibile nella sezione Contatti — su mobile piccolo è ridondante
   .hero__form-wrap { display: none; }
 }
+
+// ─── Spam warning (hero form) ────────────────────────────────────
+.booking-form__spam-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  background: rgba(255, 248, 225, 0.95);
+  border: 1px solid #ffe082;
+  border-radius: 8px;
+  padding: 0.65rem 0.85rem;
+  margin-bottom: 0.5rem;
+  color: #5d4037;
+  font-size: 0.82rem;
+  line-height: 1.4;
+
+  mat-icon {
+    color: #f9a825;
+    font-size: 1rem;
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+}

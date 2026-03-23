@@ -1,0 +1,216 @@
+.footer {
+  background: var(--clr-footer);
+  color: rgba(255,255,255,0.8);
+  font-size: 0.9rem;
+}
+
+.footer__top {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 2.5rem;
+  padding-top: 3rem;
+  padding-bottom: 2.5rem;
+}
+
+// ─── Brand ──────────────────────────────────────────────────────
+.footer__brand {}
+
+.footer__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.8rem;
+}
+
+.footer__logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.footer__logo-mark {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--clr-white);
+  letter-spacing: -0.02em;
+}
+
+.footer__logo-sub {
+  font-size: 0.62rem;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.footer__brand-desc {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 1.2rem;
+  line-height: 1.5;
+}
+
+.footer__social-label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 0.5rem;
+}
+
+.footer__social-icons {
+  display: flex;
+  gap: 0.5rem;
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    transition: background var(--transition), color var(--transition);
+
+    &:hover {
+      background: var(--clr-primary);
+      color: var(--clr-white);
+    }
+
+    mat-icon { font-size: 18px; height: 18px; width: 18px; }
+  }
+}
+
+// ─── Colonne ────────────────────────────────────────────────────
+.footer__col {
+  h4 {
+    font-family: var(--font-heading);
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--clr-white);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      padding: 0.2rem 0;
+      color: rgba(255,255,255,0.65);
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+
+    a {
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      cursor: pointer;
+      transition: color var(--transition);
+
+      &:hover { color: var(--clr-cyan); }
+    }
+  }
+}
+
+.footer__orari li { padding: 0.1rem 0; }
+.orario-val { color: rgba(255,255,255,0.85) !important; font-weight: 600; }
+
+// ─── Divider & Bottom ───────────────────────────────────────────
+.footer__divider {
+  border-color: rgba(255,255,255,0.08) !important;
+}
+
+.footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  p {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.35);
+    margin: 0;
+  }
+}
+
+.footer__legal {
+  display: flex;
+  gap: 1.2rem;
+
+  a {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 3px;
+    padding: 0.2rem 0.6rem;
+
+    &:hover { color: var(--clr-white); border-color: rgba(255,255,255,0.4); }
+  }
+}
+
+// ─── Responsive ─────────────────────────────────────────────────
+@media (max-width: 900px) {
+  .footer__top {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer__top {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+// ─── Logo AF+ Lab nel footer ─────────────────────────────────────
+.footer-logo-af {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 1;
+  margin-right: 0.4rem;
+
+  &__letters {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--clr-white);
+    letter-spacing: -0.02em;
+  }
+
+  &__plus {
+    color: var(--clr-cyan);
+    font-size: 1.4rem;
+    font-weight: 800;
+  }
+
+  &__lab {
+    font-size: 0.55rem;
+    font-weight: 700;
+    color: var(--clr-cyan);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border-top: 1px solid var(--clr-cyan);
+    padding-top: 1px;
+    width: 100%;
+    text-align: right;
+  }
+}

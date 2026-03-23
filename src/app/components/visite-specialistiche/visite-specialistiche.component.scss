@@ -1,0 +1,280 @@
+.visite-section {
+  padding: 0;
+}
+
+.visite-inner {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 520px;
+}
+
+// ─── Sidebar specialisti ─────────────────────────────────────────
+.visite-sidebar {
+  background: var(--clr-primary-dark);
+  padding: 2rem 0;
+  color: var(--clr-white);
+  overflow-y: auto;
+  max-height: 700px;
+
+  &__title {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--clr-cyan);
+    padding: 0 1.4rem;
+    margin-bottom: 1rem;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.4rem;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.82);
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition), padding-left var(--transition);
+      border-left: 3px solid transparent;
+
+      &:hover {
+        background: rgba(255,255,255,0.07);
+        color: var(--clr-white);
+        border-left-color: rgba(74,179,211,0.5);
+      }
+
+      &.attivo {
+        background: rgba(74,179,211,0.15);
+        color: var(--clr-white);
+        border-left-color: var(--clr-cyan);
+        font-weight: 600;
+
+        .visite-sidebar__arrow { opacity: 1; color: var(--clr-cyan); }
+      }
+    }
+  }
+
+  &__icon {
+    font-size: 16px;
+    height: 16px;
+    width: 16px;
+    color: var(--clr-cyan);
+    flex-shrink: 0;
+  }
+
+  &__arrow {
+    font-size: 16px;
+    height: 16px;
+    width: 16px;
+    margin-left: auto;
+    opacity: 0;
+    transition: opacity var(--transition);
+    flex-shrink: 0;
+  }
+}
+
+// ─── Pannello destro ─────────────────────────────────────────────
+.visite-content {
+  background: var(--clr-bg-alt);
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+// Griglia vantaggi (stato neutro)
+.visite-vantaggi {
+  &__header { margin-bottom: 0.5rem; }
+}
+
+.vantaggi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.vantaggio {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+  padding: 1rem;
+  background: var(--clr-white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+
+  &__icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--clr-primary-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    mat-icon { color: var(--clr-primary); font-size: 20px; height: 20px; width: 20px; }
+  }
+
+  &__text {
+    strong { display: block; font-size: 0.88rem; font-weight: 700; color: var(--clr-primary-dark); margin-bottom: 0.2rem; }
+    p { font-size: 0.8rem; color: var(--clr-text-light); line-height: 1.5; margin: 0; }
+  }
+}
+
+.visite-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  color: var(--clr-text-light);
+  font-style: italic;
+
+  mat-icon { font-size: 16px; height: 16px; width: 16px; color: var(--clr-cyan); }
+}
+
+// ─── Dettaglio specialista ───────────────────────────────────────
+.visite-dettaglio {
+  animation: fadeIn 0.25s ease;
+
+  &__back {
+    color: var(--clr-primary) !important;
+    margin-bottom: 1.2rem !important;
+    padding: 0 !important;
+    font-size: 0.85rem !important;
+
+    mat-icon { font-size: 16px; height: 16px; width: 16px; }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  &__icon-wrap {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--clr-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    mat-icon { color: var(--clr-white); font-size: 26px; height: 26px; width: 26px; }
+  }
+
+  &__nome {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--clr-primary-dark);
+    margin: 0;
+  }
+
+  &__intro {
+    font-size: 0.95rem;
+    color: var(--clr-text-light);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    border-left: 3px solid var(--clr-cyan);
+    padding-left: 1rem;
+    background: var(--clr-white);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 0.8rem 1rem;
+  }
+
+  &__subtitle {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--clr-primary);
+    margin-bottom: 0.8rem;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+
+    li {
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+      padding: 0.45rem 0;
+      border-bottom: 1px solid var(--clr-border);
+      font-size: 0.88rem;
+      color: var(--clr-text);
+      line-height: 1.5;
+
+      &:last-child { border-bottom: none; }
+
+      mat-icon {
+        font-size: 16px;
+        height: 16px;
+        width: 16px;
+        color: var(--clr-cyan);
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+    }
+  }
+
+  &__quando {
+    display: flex;
+    gap: 0.7rem;
+    align-items: flex-start;
+    background: var(--clr-primary-light);
+    border-radius: var(--radius-md);
+    padding: 1rem 1.2rem;
+    margin-bottom: 1.5rem;
+
+    mat-icon { color: var(--clr-primary); flex-shrink: 0; margin-top: 2px; }
+
+    p {
+      font-size: 0.9rem;
+      color: var(--clr-primary-dark);
+      line-height: 1.6;
+      margin: 0;
+    }
+  }
+
+  &__cta {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.4rem !important;
+    height: 44px !important;
+
+    mat-icon { font-size: 18px; height: 18px; width: 18px; }
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+// ─── Responsive ─────────────────────────────────────────────────
+@media (max-width: 900px) {
+  .visite-inner { grid-template-columns: 1fr; }
+
+  .visite-sidebar {
+    max-height: none;
+    padding: 1.5rem 0;
+  }
+
+  .vantaggi-grid { grid-template-columns: repeat(2, 1fr); }
+  .visite-content { padding: 1.5rem; }
+}
+
+@media (max-width: 600px) {
+  .vantaggi-grid { grid-template-columns: 1fr; }
+}

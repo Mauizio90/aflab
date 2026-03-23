@@ -1,0 +1,138 @@
+.hero {
+  background: linear-gradient(135deg, var(--clr-hero-start) 0%, var(--clr-hero-end) 100%);
+  padding: 60px 0 70px;
+  min-height: 540px;
+  display: flex;
+  align-items: center;
+}
+
+.hero__inner {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 3rem;
+  align-items: center;
+}
+
+// ─── Testo sinistro ─────────────────────────────────────────────
+.hero__text {
+  color: var(--clr-white);
+}
+
+.hero__title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--clr-white);
+  margin: 0 0 0.25rem;
+  line-height: 1.1;
+}
+
+.hero__subtitle {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 1.4rem;
+  letter-spacing: 0.01em;
+}
+
+.hero__desc {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.75;
+  margin-bottom: 2rem;
+}
+
+.hero__cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.hero__btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+  height: 46px !important;
+  padding: 0 1.5rem !important;
+  font-size: 0.9rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  text-decoration: none;
+
+  mat-icon { font-size: 18px; height: 18px; width: 18px; }
+}
+
+// ─── Form prenotazione ──────────────────────────────────────────
+.hero__form-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.booking-form {
+  background: var(--clr-white);
+  border-radius: var(--radius-md);
+  padding: 1.8rem 1.8rem 1.5rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  width: 100%;
+
+  &__title {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--clr-primary-dark);
+    margin-bottom: 1.2rem;
+    text-align: center;
+  }
+
+  &__success {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #e8f5e9;
+    color: #2e7d32;
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+
+    mat-icon { color: #2e7d32; }
+  }
+
+  &__submit {
+    width: 100%;
+    height: 44px !important;
+    background: var(--clr-cyan) !important;
+    color: var(--clr-white) !important;
+    font-weight: 700 !important;
+    font-size: 0.88rem !important;
+    letter-spacing: 0.06em !important;
+    border-radius: var(--radius-sm) !important;
+    margin-top: 0.25rem;
+  }
+}
+
+// Rimuove padding/margin del form-field per look più compatto
+.form-field-plain {
+  display: block;
+  margin-bottom: -0.5rem;
+
+  .mat-mdc-form-field-subscript-wrapper { display: none; }
+}
+
+// ─── Responsive ─────────────────────────────────────────────────
+@media (max-width: 900px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .hero__text { text-align: center; }
+  .hero__cta-row { justify-content: center; }
+  .hero__form-wrap { width: 100%; max-width: 480px; margin: 0 auto; }
+}
+
+@media (max-width: 500px) {
+  .hero { padding: 40px 0 50px; }
+  .hero__cta-row { flex-direction: column; }
+  .hero__btn { width: 100%; justify-content: center !important; }
+}

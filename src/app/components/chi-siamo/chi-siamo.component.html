@@ -1,0 +1,65 @@
+<section class="chi-siamo-wrap">
+  <div class="container">
+    <div class="chi-siamo-grid">
+
+      <!-- Testo -->
+      <div class="chi-siamo__text">
+        <span class="section-label">Chi siamo</span>
+        <h2 class="section-title">Aflab Centro Medico:<br>un'idea di salute diversa</h2>
+        <div class="title-underline" style="margin: 0.6rem 0 1.4rem;"></div>
+
+        <p>
+          Aflab Centro Medico è una struttura sanitaria moderna dedicata alla
+          <strong>prevenzione, diagnosi e cura della salute</strong>. Offriamo servizi
+          medici e diagnostici di qualità, con professionisti qualificati, tecnologie
+          avanzate e un'attenzione costante al benessere del paziente.
+        </p>
+
+        <p>
+          Affidabilità, rapidità e assistenza personalizzata sono i valori che guidano
+          ogni nostro servizio, per garantire un'esperienza sanitaria semplice,
+          sicura e professionale.
+        </p>
+
+        <p>
+          Il nostro obiettivo è costruire un <strong>progetto terapeutico a 360°</strong>
+          intorno al paziente, unendo la specializzazione individuale alla sinergia del team
+          multidisciplinare, per offrire sempre la migliore risposta possibile a ogni
+          esigenza di salute.
+        </p>
+
+        <!-- Valori -->
+        <div class="valori-grid">
+          <div class="valore" *ngFor="let v of valori">
+            <div class="valore__icon">
+              <mat-icon>{{ v.icon }}</mat-icon>
+            </div>
+            <div>
+              <strong>{{ v.titolo }}</strong>
+              <p>{{ v.testo }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Immagine -->
+      <div class="chi-siamo__visual">
+        <div class="image-frame">
+          <img
+            src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=700&q=80"
+            alt="Aflab Centro Medico – Team"
+            loading="lazy"
+          />
+        </div>
+        <div class="badge-prc">
+          <mat-icon>medical_services</mat-icon>
+          <div>
+            <strong>20+ Specialisti</strong>
+            <span>in un'unica struttura</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

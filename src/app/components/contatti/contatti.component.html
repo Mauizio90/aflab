@@ -1,0 +1,102 @@
+<section class="contatti-wrap">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Prenota</span>
+      <h2 class="section-title">Contattaci</h2>
+      <div class="title-underline"></div>
+      <p class="section-subtitle">
+        Compila il form per richiedere un appuntamento o maggiori informazioni.
+      </p>
+    </div>
+
+    <div class="contatti-grid">
+
+      <!-- Info laterali -->
+      <aside class="contatti-info">
+        <div class="info-card" *ngFor="let i of info">
+          <div class="info-icon">
+            <mat-icon>{{ i.icon }}</mat-icon>
+          </div>
+          <div>
+            <strong>{{ i.label }}</strong>
+            <span>{{ i.valore }}</span>
+          </div>
+        </div>
+
+        <!-- Mappa embed -->
+        <div class="mappa">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001.0!2d8.31775!3d40.55805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDMzJzI5LjAiTiA4wrAxOScwMy45IkU!5e0!3m2!1sit!2sit!4v1"
+            width="100%"
+            height="200"
+            style="border:0;"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Mappa Centro MeC Alghero"
+          ></iframe>
+        </div>
+      </aside>
+
+      <!-- Form -->
+      <div class="contatti-form-wrap">
+        <p class="form-title">Compila il form per richiedere un<br>appuntamento o maggiori informazioni</p>
+
+        <div *ngIf="invioInCorso === false && form.pristine === false" class="success-box" style="display:none">
+          <mat-icon>check_circle</mat-icon> Richiesta inviata!
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+          <div class="form-row">
+            <mat-form-field appearance="outline">
+              <mat-label>Nome</mat-label>
+              <input matInput formControlName="nome" placeholder="Mario" />
+              <mat-error>{{ getError('nome') }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Cognome</mat-label>
+              <input matInput formControlName="cognome" placeholder="Rossi" />
+              <mat-error>{{ getError('cognome') }}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Telefono</mat-label>
+            <input matInput formControlName="telefono" placeholder="079 000 0000" />
+            <mat-error>{{ getError('telefono') }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>E-mail</mat-label>
+            <input matInput formControlName="email" placeholder="mario@email.it" />
+            <mat-error>{{ getError('email') }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Visita specialistica</mat-label>
+            <mat-select formControlName="servizio">
+              <mat-option *ngFor="let s of servizi" [value]="s">{{ s }}</mat-option>
+            </mat-select>
+            <mat-error>{{ getError('servizio') }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Informazioni</mat-label>
+            <textarea matInput formControlName="messaggio" rows="3" placeholder="Descrivi brevemente la tua richiesta…"></textarea>
+          </mat-form-field>
+
+          <button
+            mat-raised-button
+            type="submit"
+            class="submit-btn"
+            [disabled]="invioInCorso"
+          >
+            {{ invioInCorso ? 'Invio in corso…' : 'INVIA RICHIESTA' }}
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>

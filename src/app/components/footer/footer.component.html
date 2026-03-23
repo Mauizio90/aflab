@@ -1,0 +1,80 @@
+<footer class="footer">
+  <div class="footer__top container">
+
+    <!-- Brand -->
+    <div class="footer__brand">
+      <div class="footer__logo">
+        <div class="footer-logo-af">
+          <span class="footer-logo-af__letters">AF<span class="footer-logo-af__plus">+</span></span>
+          <span class="footer-logo-af__lab">LAB</span>
+        </div>
+        <div class="footer__logo-text">
+          <span class="footer__logo-mark">Aflab</span>
+          <span class="footer__logo-sub">Centro Medico</span>
+        </div>
+      </div>
+
+      <p class="footer__brand-desc">
+        Struttura sanitaria moderna dedicata alla prevenzione, diagnosi e cura della salute.
+      </p>
+
+      <div class="footer__social">
+        <span class="footer__social-label">Seguici sui social</span>
+        <div class="footer__social-icons">
+          <a href="#" aria-label="Facebook">
+            <mat-icon>facebook</mat-icon>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <mat-icon>photo_camera</mat-icon>
+          </a>
+          <a href="#" aria-label="TikTok">
+            <mat-icon>music_note</mat-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Il Centro -->
+    <div class="footer__col">
+      <h4>Il Centro</h4>
+      <ul>
+        <li>Via [da inserire]</li>
+        <li>[Città] ([Provincia])</li>
+        <li><a href="tel:+390000000000">Telefono: 000.000.0000</a></li>
+        <li><a href="mailto:info@aflab.it">info&#64;aflab.it</a></li>
+      </ul>
+    </div>
+
+    <!-- Orari -->
+    <div class="footer__col">
+      <h4>Orari di apertura</h4>
+      <ul class="footer__orari">
+        <li><span>Dal Lunedì al Venerdì</span></li>
+        <li><span>Orario continuato</span></li>
+        <li><span class="orario-val">dalle 09:00 alle 19:00</span></li>
+        <li style="margin-top:0.5rem"><span>Sabato e Domenica: <strong>Chiuso</strong></span></li>
+      </ul>
+    </div>
+
+    <!-- Link rapidi -->
+    <div class="footer__col">
+      <h4>Link rapidi</h4>
+      <ul>
+        <li *ngFor="let l of links">
+          <a (click)="scrollTo(l.anchor)">{{ l.label }}</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <mat-divider class="footer__divider"></mat-divider>
+
+  <div class="footer__bottom container">
+    <p>Aflab Centro Medico © {{ anno }} – Tutti i diritti riservati</p>
+    <div class="footer__legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Cookie Policy</a>
+    </div>
+  </div>
+</footer>

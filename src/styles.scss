@@ -1,0 +1,169 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+// Palette centrata sul blu acciaio del sito originale
+$primary-palette: mat.define-palette(mat.$blue-palette, 700, 400, 900);
+$accent-palette:  mat.define-palette(mat.$cyan-palette, 500, 200, 800);
+$warn-palette:    mat.define-palette(mat.$red-palette);
+
+$centro-mec-theme: mat.define-light-theme((
+  color: (
+    primary: $primary-palette,
+    accent:  $accent-palette,
+    warn:    $warn-palette,
+  ),
+  typography: mat.define-typography-config(
+    $font-family: "'Open Sans', sans-serif",
+  ),
+  density: 0,
+));
+
+@include mat.all-component-themes($centro-mec-theme);
+
+// ─── Google Fonts ────────────────────────────────────────────────
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Raleway:wght@600;700;800&display=swap');
+
+// ─── CSS Variables ──────────────────────────────────────────────
+:root {
+  // Palette originale centro-mec.it
+  --clr-topbar:       #2d3546;
+  --clr-primary:      #3a7ca5;
+  --clr-primary-dark: #2a5f85;
+  --clr-primary-light:#e8f4fb;
+  --clr-cyan:         #4ab3d3;
+  --clr-hero-start:   #4a90c4;
+  --clr-hero-end:     #357099;
+  --clr-whatsapp:     #25d366;
+  --clr-footer:       #1c2d45;
+  --clr-footer-light: #253b58;
+  --clr-text:         #333333;
+  --clr-text-light:   #666666;
+  --clr-white:        #ffffff;
+  --clr-bg:           #ffffff;
+  --clr-bg-alt:       #f8f9fa;
+  --clr-border:       #e0e0e0;
+
+  // Colori overlay card servizi
+  --clr-srv-1: #2e8b6e;
+  --clr-srv-2: #1a5f9a;
+  --clr-srv-3: #5a7d6e;
+  --clr-srv-4: #1c3a5c;
+  --clr-srv-5: #7a2e4e;
+  --clr-srv-6: #7b5ea7;
+  --clr-srv-7: #1a7a9a;
+  --clr-srv-8: #c87a00;
+  --clr-srv-9: #2a6e8a;
+
+  --font-heading: 'Raleway', sans-serif;
+  --font-body:    'Open Sans', sans-serif;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --shadow-sm: 0 2px 8px rgba(0,0,0,.08);
+  --shadow-md: 0 6px 24px rgba(0,0,0,.12);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,.18);
+
+  --transition: 0.3s ease;
+}
+
+// ─── Reset & Base ────────────────────────────────────────────────
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--clr-text);
+  background: var(--clr-bg);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+// ─── Typography helpers ──────────────────────────────────────────
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 700;
+  color: var(--clr-primary-dark);
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  color: var(--clr-text-light);
+  max-width: 640px;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+
+.section-label {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--clr-cyan);
+  margin-bottom: 0.5rem;
+}
+
+// ─── Layout helpers ──────────────────────────────────────────────
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+section { padding: 70px 0; }
+section.alt-bg { background: var(--clr-bg-alt); }
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+// ─── Bottoni globali ─────────────────────────────────────────────
+.btn-primary {
+  background-color: var(--clr-primary) !important;
+  color: var(--clr-white) !important;
+  border-radius: var(--radius-sm) !important;
+  font-weight: 600 !important;
+}
+
+.btn-whatsapp {
+  background-color: var(--clr-whatsapp) !important;
+  color: var(--clr-white) !important;
+  border-radius: var(--radius-sm) !important;
+  font-weight: 600 !important;
+}
+
+// ─── Material overrides ──────────────────────────────────────────
+.mat-mdc-card {
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-sm) !important;
+  transition: box-shadow var(--transition), transform var(--transition) !important;
+
+  &:hover {
+    box-shadow: var(--shadow-md) !important;
+    transform: translateY(-4px);
+  }
+}
+
+.mat-mdc-form-field { width: 100%; }
+
+// ─── Divider decorativo ──────────────────────────────────────────
+.title-underline {
+  width: 50px;
+  height: 3px;
+  background: var(--clr-cyan);
+  border-radius: 2px;
+  margin: 0.6rem auto 1.2rem;
+}
+
+// ─── Responsive ──────────────────────────────────────────────────
+@media (max-width: 768px) {
+  section { padding: 50px 0; }
+}

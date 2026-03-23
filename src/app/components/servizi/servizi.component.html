@@ -1,0 +1,39 @@
+<section class="servizi-section" id="servizi-area">
+
+  <!-- Riga 1: 3 card grandi -->
+  <div class="servizi-grid servizi-grid--primari">
+    <div
+      class="srv-card srv-card--grande"
+      *ngFor="let s of serviziPrimari"
+      [style.background-image]="'url(' + s.foto + ')'"
+    >
+      <div class="srv-card__overlay" [style.background-color]="s.colore"></div>
+      <div class="srv-card__content">
+        <mat-icon class="srv-card__icon">medical_services</mat-icon>
+        <h3 class="srv-card__titolo">{{ s.titolo }}</h3>
+        <button mat-stroked-button class="srv-card__btn" (click)="scrollTo('contatti')">
+          SCOPRI DI PIÙ
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Riga 2: 6 card mosaico -->
+  <div class="servizi-grid servizi-grid--secondari">
+    <div
+      class="srv-card"
+      *ngFor="let s of serviziSecondari"
+      [style.background-image]="'url(' + s.foto + ')'"
+    >
+      <div class="srv-card__overlay" [style.background-color]="s.colore"></div>
+      <div class="srv-card__content">
+        <mat-icon class="srv-card__icon">medical_services</mat-icon>
+        <h3 class="srv-card__titolo">{{ s.titolo }}</h3>
+        <button mat-stroked-button class="srv-card__btn" (click)="scrollTo('contatti')">
+          SCOPRI DI PIÙ
+        </button>
+      </div>
+    </div>
+  </div>
+
+</section>

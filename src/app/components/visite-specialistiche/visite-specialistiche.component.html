@@ -1,0 +1,84 @@
+<section class="visite-section">
+  <div class="visite-inner">
+
+    <!-- Sidebar sinistra: lista specialisti cliccabili -->
+    <aside class="visite-sidebar">
+      <h3 class="visite-sidebar__title">VISITE SPECIALISTICHE</h3>
+      <ul class="visite-sidebar__list">
+        <li
+          *ngFor="let s of specialisti"
+          [class.attivo]="specialistaSelezionato?.nome === s.nome"
+          (click)="seleziona(s)"
+        >
+          <mat-icon class="visite-sidebar__icon">{{ s.icon }}</mat-icon>
+          <span>{{ s.nome }}</span>
+          <mat-icon class="visite-sidebar__arrow">chevron_right</mat-icon>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Pannello destro: dettaglio specialista o vantaggi -->
+    <div class="visite-content">
+
+      <!-- Nessuno selezionato: mostra vantaggi -->
+      <div class="visite-vantaggi" *ngIf="!specialistaSelezionato">
+        <div class="visite-vantaggi__header">
+          <span class="section-label">Perché sceglierci</span>
+          <h2 class="section-title" style="text-align:left; margin:0.4rem 0 0.2rem">I nostri punti di forza</h2>
+          <div class="title-underline" style="margin:0.6rem 0 1.5rem; margin-left:0"></div>
+        </div>
+        <div class="vantaggi-grid">
+          <div class="vantaggio" *ngFor="let v of vantaggi">
+            <div class="vantaggio__icon">
+              <mat-icon>{{ v.icon }}</mat-icon>
+            </div>
+            <div class="vantaggio__text">
+              <strong>{{ v.titolo }}</strong>
+              <p>{{ v.testo }}</p>
+            </div>
+          </div>
+        </div>
+        <p class="visite-hint">
+          <mat-icon>touch_app</mat-icon>
+          Clicca su uno specialista per scoprire cosa fa e quando consultarlo
+        </p>
+      </div>
+
+      <!-- Specialista selezionato: mostra descrizione -->
+      <div class="visite-dettaglio" *ngIf="specialistaSelezionato">
+        <button mat-button class="visite-dettaglio__back" (click)="specialistaSelezionato = null">
+          <mat-icon>arrow_back</mat-icon> Tutti gli specialisti
+        </button>
+
+        <div class="visite-dettaglio__header">
+          <div class="visite-dettaglio__icon-wrap">
+            <mat-icon>{{ specialistaSelezionato.icon }}</mat-icon>
+          </div>
+          <h2 class="visite-dettaglio__nome">{{ specialistaSelezionato.nome }}</h2>
+        </div>
+
+        <p class="visite-dettaglio__intro">{{ specialistaSelezionato.intro }}</p>
+
+        <h4 class="visite-dettaglio__subtitle">Cosa fa nel dettaglio</h4>
+        <ul class="visite-dettaglio__list">
+          <li *ngFor="let d of specialistaSelezionato.dettagli">
+            <mat-icon>check_circle</mat-icon>
+            <span>{{ d }}</span>
+          </li>
+        </ul>
+
+        <div class="visite-dettaglio__quando">
+          <mat-icon>calendar_today</mat-icon>
+          <p><strong>Quando prenotare:</strong> {{ specialistaSelezionato.quando }}</p>
+        </div>
+
+        <button mat-raised-button class="btn-primary visite-dettaglio__cta"
+          (click)="prenotaVisita(specialistaSelezionato!.nome)">
+          Prenota una visita
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>

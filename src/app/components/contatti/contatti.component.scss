@@ -1,0 +1,118 @@
+.contatti-wrap {
+  background: var(--clr-primary-dark);
+  padding: 60px 0;
+
+  .section-title { color: var(--clr-white); }
+  .section-label { color: var(--clr-cyan); }
+  .section-subtitle { color: rgba(255,255,255,0.7); }
+  .title-underline { background: var(--clr-cyan); }
+}
+
+.contatti-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+// ─── Info sidebar ────────────────────────────────────────────────
+.contatti-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.info-card {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+
+  .info-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    mat-icon { color: var(--clr-cyan); font-size: 20px; height: 20px; width: 20px; }
+  }
+
+  strong {
+    display: block;
+    color: var(--clr-white);
+    font-size: 0.85rem;
+    margin-bottom: 0.2rem;
+  }
+
+  span {
+    display: block;
+    color: rgba(255,255,255,0.65);
+    font-size: 0.88rem;
+  }
+}
+
+.mappa {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+// ─── Form ────────────────────────────────────────────────────────
+.contatti-form-wrap {
+  background: var(--clr-white);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-lg);
+}
+
+.form-title {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--clr-primary-dark);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 1rem;
+}
+
+.submit-btn {
+  width: 100%;
+  height: 48px !important;
+  background: var(--clr-cyan) !important;
+  color: var(--clr-white) !important;
+  font-weight: 700 !important;
+  font-size: 0.88rem !important;
+  letter-spacing: 0.06em !important;
+  border-radius: var(--radius-sm) !important;
+  margin-top: 0.5rem;
+}
+
+.success-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  font-weight: 600;
+
+  mat-icon { color: #2e7d32; }
+}
+
+// ─── Responsive ─────────────────────────────────────────────────
+@media (max-width: 900px) {
+  .contatti-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .contatti-form-wrap { padding: 1.5rem; }
+}

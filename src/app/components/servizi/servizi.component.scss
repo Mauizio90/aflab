@@ -1,0 +1,110 @@
+.servizi-section {
+  padding: 0;
+}
+
+// ─── Griglia comune ──────────────────────────────────────────────
+.servizi-grid {
+  display: grid;
+  gap: 0;
+}
+
+// Prima riga: 3 colonne uguali
+.servizi-grid--primari {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+// Seconda riga: 3 colonne × 2 righe
+.servizi-grid--secondari {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+// ─── Singola card ────────────────────────────────────────────────
+.srv-card {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  cursor: pointer;
+  height: 220px;
+  display: flex;
+  align-items: flex-end;
+
+  &--grande {
+    height: 300px;
+  }
+
+  // overlay colorato semitrasparente
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    opacity: 0.72;
+    transition: opacity var(--transition);
+  }
+
+  &:hover &__overlay { opacity: 0.85; }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    padding: 1.2rem 1.4rem;
+    width: 100%;
+  }
+
+  &__icon {
+    color: rgba(255,255,255,0.7);
+    font-size: 28px;
+    height: 28px;
+    width: 28px;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  &__titolo {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--clr-white);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.7rem;
+    line-height: 1.25;
+  }
+
+  &__btn {
+    color: var(--clr-white) !important;
+    border-color: rgba(255,255,255,0.7) !important;
+    border-radius: 4px !important;
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.06em !important;
+    height: 32px !important;
+    padding: 0 0.8rem !important;
+    min-width: 0 !important;
+
+    &:hover {
+      background: rgba(255,255,255,0.15) !important;
+      border-color: var(--clr-white) !important;
+    }
+  }
+}
+
+// ─── Responsive ─────────────────────────────────────────────────
+@media (max-width: 900px) {
+  .servizi-grid--primari,
+  .servizi-grid--secondari {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .srv-card--grande { height: 240px; }
+  .srv-card { height: 200px; }
+}
+
+@media (max-width: 600px) {
+  .servizi-grid--primari,
+  .servizi-grid--secondari {
+    grid-template-columns: 1fr;
+  }
+
+  .srv-card--grande { height: 220px; }
+  .srv-card { height: 180px; }
+}

@@ -1,0 +1,74 @@
+<section class="hero">
+  <div class="hero__inner container">
+
+    <!-- Colonna sinistra: testo -->
+    <div class="hero__text">
+      <h1 class="hero__title">Aflab Centro Medico</h1>
+      <p class="hero__subtitle">Struttura sanitaria moderna ad Alghero</p>
+
+      <p class="hero__desc">
+        Prevenzione, diagnosi e cura della salute in un'unica struttura.<br>
+        Professionisti qualificati, tecnologie avanzate e un'attenzione<br>
+        costante al tuo benessere. Affidabilità, rapidità<br>
+        e assistenza personalizzata.
+      </p>
+
+      <div class="hero__cta-row">
+        <a href="tel:+390000000000" mat-raised-button class="btn-primary hero__btn">
+          <mat-icon>phone</mat-icon>
+          TELEFONO
+        </a>
+        <a href="https://wa.me/390000000000" target="_blank" mat-raised-button class="btn-whatsapp hero__btn">
+          <mat-icon>chat</mat-icon>
+          WHATSAPP
+        </a>
+      </div>
+    </div>
+
+    <!-- Colonna destra: form prenotazione -->
+    <div class="hero__form-wrap">
+      <div class="booking-form">
+        <h2 class="booking-form__title">Prenota una visita</h2>
+
+        <div *ngIf="inviato" class="booking-form__success">
+          <mat-icon>check_circle</mat-icon>
+          Richiesta inviata! Ti contatteremo presto.
+        </div>
+
+        <form *ngIf="!inviato" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+          <mat-form-field appearance="outline" class="form-field-plain">
+            <input matInput formControlName="nomeCognome" placeholder="Nome e Cognome" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="form-field-plain">
+            <input matInput formControlName="telefono" placeholder="Telefono" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="form-field-plain">
+            <input matInput formControlName="email" placeholder="E-mail" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="form-field-plain">
+            <mat-select formControlName="visita" placeholder="Visita specialistica">
+              <mat-option *ngFor="let v of visitaOptions" [value]="v">{{ v }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="form-field-plain">
+            <textarea matInput formControlName="informazioni" placeholder="Informazioni" rows="3"></textarea>
+          </mat-form-field>
+
+          <button
+            mat-raised-button
+            type="submit"
+            class="booking-form__submit"
+            [disabled]="invioInCorso"
+          >
+            {{ invioInCorso ? 'Invio in corso…' : 'INVIA RICHIESTA' }}
+          </button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</section>

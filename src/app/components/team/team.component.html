@@ -1,0 +1,62 @@
+<section class="team-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">I professionisti</span>
+      <h2 class="section-title">Il nostro team</h2>
+      <div class="title-underline"></div>
+      <p class="section-subtitle">
+        Professionisti altamente qualificati, selezionati per competenza e passione.
+        Non dovrai aspettare mesi per una visita specialistica.
+      </p>
+    </div>
+
+    <!-- Loading -->
+    <div class="team-loading" *ngIf="loading">
+      <mat-progress-spinner mode="indeterminate" diameter="48" color="primary"></mat-progress-spinner>
+      <p>Caricamento team in corso…</p>
+    </div>
+
+    <!-- Error -->
+    <div class="team-error" *ngIf="error && !loading">
+      <mat-icon>error_outline</mat-icon>
+      <p>Impossibile caricare il team al momento. Riprova più tardi.</p>
+    </div>
+
+    <!-- Team grid -->
+    <div class="team-grid" *ngIf="!loading && !error">
+      <mat-card class="medico-card" *ngFor="let m of medici">
+        <!-- Foto -->
+        <div class="medico-foto">
+          <img
+            *ngIf="m.foto; else avatarTpl"
+            [src]="m.foto"
+            [alt]="m.nome + ' ' + m.cognome"
+            loading="lazy"
+            (error)="m.foto = ''"
+          />
+          <ng-template #avatarTpl>
+            <div class="medico-avatar">{{ getInitials(m) }}</div>
+          </ng-template>
+        </div>
+
+        <mat-card-content class="medico-info">
+          <h3 class="medico-nome">{{ m.nome }} {{ m.cognome }}</h3>
+          <mat-chip-set>
+            <mat-chip class="chip-spec">{{ m.specializzazione }}</mat-chip>
+          </mat-chip-set>
+          <p class="medico-desc">{{ m.descrizione }}</p>
+
+          <a
+            *ngIf="m.email"
+            [href]="'mailto:' + m.email"
+            class="medico-email"
+            mat-button
+          >
+            <mat-icon>email</mat-icon>
+            Contatta
+          </a>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,11 @@
+<div class="trust-bar">
+  <div class="trust-bar__inner container">
+    <div class="trust-pill" *ngFor="let p of pillole">
+      <mat-icon class="trust-pill__icon">{{ p.icon }}</mat-icon>
+      <div class="trust-pill__text">
+        <strong class="trust-pill__valore">{{ p.valore }}</strong>
+        <span class="trust-pill__label">{{ p.label }}</span>
+      </div>
+    </div>
+  </div>
+</div>

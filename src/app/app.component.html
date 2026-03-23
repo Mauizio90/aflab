@@ -1,16 +1,22 @@
 <app-navbar></app-navbar>
 
 <main>
-  <!-- Hero con form prenotazione -->
+  <!-- Hero con CTA principale -->
   <app-hero id="home"></app-hero>
+
+  <!-- Barra numeri di fiducia (5★ · 20+ specialisti · 24h · Sorso) -->
+  <app-trust-bar></app-trust-bar>
 
   <!-- Griglia servizi a mosaico -->
   <app-servizi id="servizi"></app-servizi>
 
-  <!-- Lista specialità + vantaggi -->
-  <app-visite-specialistiche></app-visite-specialistiche>
+  <!-- Come funziona (3 passi) -->
+  <app-come-funziona></app-come-funziona>
 
-  <!-- Barra info: contatti + newsletter + orari -->
+  <!-- Lista specialità + vantaggi -->
+  <app-visite-specialistiche id="specialisti"></app-visite-specialistiche>
+
+  <!-- Barra info: contatti + orari -->
   <app-info-bar></app-info-bar>
 
   <!-- Chi siamo -->
@@ -19,11 +25,18 @@
   <!-- Team -->
   <app-team id="team"></app-team>
 
-  <!-- Contatti / Prenota -->
-  <app-contatti id="contatti"></app-contatti>
+  <!-- Recensioni Google Maps -->
+  <app-recensioni id="recensioni"></app-recensioni>
 
   <!-- CTA finale: Prenota + TELEFONO/WHATSAPP -->
   <app-cta-finale></app-cta-finale>
+
+  <!-- Contatti / Prenota -->
+  <app-contatti id="contatti"></app-contatti>
+
 </main>
 
 <app-footer></app-footer>
+
+<!-- Floating CTA bar: visibile solo su mobile -->
+<app-floating-cta></app-floating-cta>

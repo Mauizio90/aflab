@@ -14,6 +14,19 @@ export const environment = {
   // URL CSV del foglio "Specialisti" (Visite Specialistiche)
   googleSheetsSpecialistiUrl: 'https://docs.google.com/spreadsheets/d/1cFmEdvOpui6WauxULNLei4lX77IhRoWh/gviz/tq?tqx=out:csv&sheet=Specialisti',
 
+  // ── Google Maps / Places API ───────────────────────────────────
+  // Per attivare le recensioni dinamiche da Google Maps:
+  // 1. Vai su https://console.cloud.google.com
+  // 2. Crea un progetto → Abilita "Places API" e "Maps JavaScript API"
+  // 3. API & Services → Credentials → Create API Key → incolla qui sotto
+  // 4. Per il placeId: vai su https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder
+  //    oppure cerca "AF lab Sorso" su Google Maps, l'ID è nel link dopo "place/"
+  // NOTA: finché apiKey è '', vengono usate le recensioni statiche di fallback.
+  googleMaps: {
+    apiKey:  '',                        // ← incolla qui la chiave API
+    placeId: 'ChIJ...',                 // ← incolla qui il Place ID di AF lab
+  },
+
   // ── EmailJS ────────────────────────────────────────────────────
   // Registrati su https://www.emailjs.com (piano Free: 200 email/mese)
   // Dashboard → Email Services → Add New Service (copia Service ID)

@@ -1,5 +1,9 @@
 <section class="visite-section">
-  <div class="visite-inner">
+
+  <!-- ════════════════════════════════════════════════════════════
+       DESKTOP: sidebar sinistra + pannello destro
+       ════════════════════════════════════════════════════════════ -->
+  <div class="visite-inner visite-desktop">
 
     <!-- Sidebar sinistra: lista specialisti cliccabili -->
     <aside class="visite-sidebar">
@@ -29,9 +33,7 @@
         </div>
         <div class="vantaggi-grid">
           <div class="vantaggio" *ngFor="let v of vantaggi">
-            <div class="vantaggio__icon">
-              <mat-icon>{{ v.icon }}</mat-icon>
-            </div>
+            <div class="vantaggio__icon"><mat-icon>{{ v.icon }}</mat-icon></div>
             <div class="vantaggio__text">
               <strong>{{ v.titolo }}</strong>
               <p>{{ v.testo }}</p>
@@ -49,36 +51,82 @@
         <button mat-button class="visite-dettaglio__back" (click)="specialistaSelezionato = null">
           <mat-icon>arrow_back</mat-icon> Tutti gli specialisti
         </button>
-
         <div class="visite-dettaglio__header">
           <div class="visite-dettaglio__icon-wrap">
             <mat-icon>{{ specialistaSelezionato.icon }}</mat-icon>
           </div>
           <h2 class="visite-dettaglio__nome">{{ specialistaSelezionato.nome }}</h2>
         </div>
-
         <p class="visite-dettaglio__intro">{{ specialistaSelezionato.intro }}</p>
-
         <h4 class="visite-dettaglio__subtitle">Cosa fa nel dettaglio</h4>
         <ul class="visite-dettaglio__list">
           <li *ngFor="let d of specialistaSelezionato.dettagli">
-            <mat-icon>check_circle</mat-icon>
-            <span>{{ d }}</span>
+            <mat-icon>check_circle</mat-icon><span>{{ d }}</span>
           </li>
         </ul>
-
         <div class="visite-dettaglio__quando">
           <mat-icon>calendar_today</mat-icon>
           <p><strong>Quando prenotare:</strong> {{ specialistaSelezionato.quando }}</p>
         </div>
-
         <button mat-raised-button class="btn-primary visite-dettaglio__cta"
           (click)="prenotaVisita(specialistaSelezionato!.nome)">
-          Prenota una visita
-          <mat-icon>arrow_forward</mat-icon>
+          Prenota una visita <mat-icon>arrow_forward</mat-icon>
         </button>
       </div>
 
     </div>
   </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       MOBILE: accordion verticale
+       ════════════════════════════════════════════════════════════ -->
+  <div class="visite-mobile">
+    <div class="visite-mobile__header">
+      <span class="section-label">Esplora le specialità</span>
+      <h2 class="section-title">Visite Specialistiche</h2>
+      <div class="title-underline"></div>
+    </div>
+
+    <div class="acc-list">
+      <div class="acc-item" *ngFor="let s of specialisti"
+           [class.acc-item--open]="specialistaSelezionato?.nome === s.nome">
+
+        <!-- Intestazione cliccabile -->
+        <button class="acc-header" (click)="seleziona(s)" [attr.aria-expanded]="specialistaSelezionato?.nome === s.nome">
+          <div class="acc-header__left">
+            <div class="acc-header__icon">
+              <mat-icon>{{ s.icon }}</mat-icon>
+            </div>
+            <span class="acc-header__nome">{{ s.nome }}</span>
+          </div>
+          <mat-icon class="acc-header__arrow">
+            {{ specialistaSelezionato?.nome === s.nome ? 'expand_less' : 'expand_more' }}
+          </mat-icon>
+        </button>
+
+        <!-- Corpo espandibile -->
+        <div class="acc-body" *ngIf="specialistaSelezionato?.nome === s.nome">
+          <p class="acc-body__intro">{{ s.intro }}</p>
+
+          <ul class="acc-body__list">
+            <li *ngFor="let d of s.dettagli">
+              <mat-icon>check_circle</mat-icon><span>{{ d }}</span>
+            </li>
+          </ul>
+
+          <div class="acc-body__quando">
+            <mat-icon>calendar_today</mat-icon>
+            <p><strong>Quando prenotare:</strong> {{ s.quando }}</p>
+          </div>
+
+          <button mat-raised-button class="btn-primary acc-body__cta"
+            (click)="prenotaVisita(s.nome)">
+            Prenota questa visita <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </section>

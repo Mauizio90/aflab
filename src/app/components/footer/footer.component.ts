@@ -9,12 +9,12 @@ export class FooterComponent {
   anno = new Date().getFullYear();
 
   links = [
-    { label: 'Ortopedia e Fisiatria',    anchor: 'servizi'   },
-    { label: 'Diagnostica per Immagini', anchor: 'servizi'   },
-    { label: 'Area Medica Specialistica',anchor: 'servizi'   },
-    { label: 'Chi siamo',                anchor: 'chi-siamo' },
-    { label: 'Il Team',                  anchor: 'team'      },
-    { label: 'Contatti',                 anchor: 'contatti'  },
+    { label: 'Area Medica Specialistica', anchor: 'servizi'    },
+    { label: 'Visite Specialistiche',     anchor: 'servizi'    },
+    { label: 'Chi siamo',                 anchor: 'chi-siamo'  },
+    { label: 'Il Team',                   anchor: 'team'       },
+    { label: 'Recensioni',                anchor: 'recensioni' },
+    { label: 'Contatti',                  anchor: 'contatti'   },
   ];
 
   scrollTo(anchor: string): void {

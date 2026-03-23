@@ -1,0 +1,78 @@
+<section class="recensioni-wrap">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="section-header">
+      <span class="section-label">Recensioni</span>
+      <h2 class="section-title">Cosa dicono i nostri pazienti</h2>
+      <div class="title-underline"></div>
+    </div>
+
+    <!-- Score bar -->
+    <div class="score-bar">
+      <div class="score-bar__stars">
+        <mat-icon *ngFor="let s of stelle(5)">star</mat-icon>
+      </div>
+      <span class="score-bar__num">5.0</span>
+      <span class="score-bar__label">· 11 recensioni su</span>
+      <a
+        class="score-bar__link"
+        href="https://maps.google.com/?q=AF+lab+Viale+S.+Cottoni+44+Sorso+SS"
+        target="_blank"
+        rel="noopener"
+        aria-label="Vedi tutte le recensioni su Google Maps"
+      >
+        <img
+          src="https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg"
+          alt="Google"
+          class="score-bar__glogo"
+        />
+      </a>
+    </div>
+
+    <!-- Cards -->
+    <div class="recensioni-grid" *ngIf="!caricamento">
+      <article class="rec-card" *ngFor="let r of recensioni; let i = index">
+
+        <!-- Virgolette decorative -->
+        <span class="rec-card__quote">&ldquo;</span>
+
+        <!-- Testo -->
+        <p class="rec-card__testo">{{ r.testo }}</p>
+
+        <!-- Footer card -->
+        <div class="rec-card__footer">
+          <div class="rec-card__avatar" [style.background]="coloreAvatar(i)">
+            {{ r.iniziale }}
+          </div>
+          <div class="rec-card__meta">
+            <strong class="rec-card__nome">{{ r.nome }}</strong>
+            <div class="rec-card__stelle">
+              <mat-icon *ngFor="let s of stelle(r.stelle)">star</mat-icon>
+            </div>
+          </div>
+        </div>
+
+      </article>
+    </div>
+
+    <!-- Loader -->
+    <div class="recensioni-loader" *ngIf="caricamento">
+      <mat-progress-spinner mode="indeterminate" diameter="40"></mat-progress-spinner>
+    </div>
+
+    <!-- CTA -->
+    <div class="recensioni-cta">
+      <a
+        href="https://maps.google.com/?q=AF+lab+Viale+S.+Cottoni+44+Sorso+SS"
+        target="_blank"
+        rel="noopener"
+        class="btn-google-reviews"
+      >
+        <mat-icon>open_in_new</mat-icon>
+        Leggi tutte le recensioni su Google
+      </a>
+    </div>
+
+  </div>
+</section>

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { PrenotazioneService } from '../../services/prenotazione.service';
 import { SpecialistiService } from '../../services/specialisti.service';
+import { SpecialistaViewService } from '../../services/specialista-view.service';
 
 export interface Specialista {
   nome: string;
@@ -8,6 +10,8 @@ export interface Specialista {
   intro: string;
   dettagli: string[];
   quando: string;
+  /** Corrisponde al campo "Servizio" nel foglio Google Sheets Specialisti */
+  servizio?: string;
 }
 
 @Component({
@@ -15,13 +19,15 @@ export interface Specialista {
   templateUrl: './visite-specialistiche.component.html',
   styleUrls: ['./visite-specialistiche.component.scss'],
 })
-export class VisiteSpecialisticheComponent implements OnInit {
+export class VisiteSpecialisticheComponent implements OnInit, OnDestroy {
   specialistaSelezionato: Specialista | null = null;
   loading = true;
+  private sub!: Subscription;
 
   constructor(
     private prenotazioneService: PrenotazioneService,
     private specialistiService: SpecialistiService,
+    private specialistaViewService: SpecialistaViewService,
   ) {}
 
   ngOnInit(): void {
@@ -29,9 +35,24 @@ export class VisiteSpecialisticheComponent implements OnInit {
       if (remoti.length > 0) {
         this.specialisti = remoti;
       }
-      // altrimenti rimangono i dati hardcoded sotto
       this.loading = false;
     });
+
+    // Ascolta le richieste di apertura da altri componenti (es. ServizComponent)
+    this.sub = this.specialistaViewService.apri$.subscribe(nome => {
+      if (!nome) return;
+      const trovato = this.specialisti.find(
+        s => s.nome.toLowerCase() === nome.toLowerCase()
+      );
+      if (trovato) {
+        this.specialistaSelezionato = trovato;
+      }
+      this.specialistaViewService.reset();
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.sub?.unsubscribe();
   }
 
   specialisti: Specialista[] = [
@@ -298,9 +319,9 @@ export class VisiteSpecialisticheComponent implements OnInit {
   prenotaVisita(nomeSpecialista: string): void {
     // Comunica lo specialista al form contatti tramite il servizio
     this.prenotazioneService.selezionaSpecialista(nomeSpecialista);
-    // Scorre fino al form
+    // Scorre direttamente al form (non alla sezione intera)
     setTimeout(() => {
-      const el = document.getElementById('contatti');
+      const el = document.getElementById('prenota-form') ?? document.getElementById('contatti');
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 50);
   }

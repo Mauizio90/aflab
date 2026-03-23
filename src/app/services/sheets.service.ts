@@ -37,10 +37,17 @@ export class SheetsService {
     const lines = csv.trim().split('\n');
     if (lines.length < 2) return [];
 
-    // salta la riga di intestazione (indice 0)
-    return lines.slice(1)
+    // Trova dinamicamente la riga header (quella che inizia con "Nome")
+    const headerIdx = lines.findIndex(l => {
+      const first = this.clean(this.splitCsvLine(l)[0]).toLowerCase();
+      return first === 'nome';
+    });
+
+    const dataStart = headerIdx !== -1 ? headerIdx + 1 : 1;
+
+    return lines.slice(dataStart)
       .map(line => this.parseLine(line))
-      .filter(m => m.nome || m.cognome); // salta righe vuote
+      .filter(m => m.nome || m.cognome);
   }
 
   private parseLine(line: string): Medico {

@@ -70,19 +70,27 @@
     line-height: 1.25;
   }
 
+  &__btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
   &__btn {
     color: var(--clr-white) !important;
     border-color: rgba(255,255,255,0.7) !important;
     border-radius: 4px !important;
-    font-size: 0.75rem !important;
+    font-size: 0.72rem !important;
     font-weight: 700 !important;
-    letter-spacing: 0.06em !important;
-    height: 32px !important;
-    padding: 0 0.8rem !important;
+    letter-spacing: 0.04em !important;
+    height: 30px !important;
+    padding: 0 0.7rem !important;
     min-width: 0 !important;
+    line-height: 30px !important;
+    text-transform: none !important;
 
     &:hover {
-      background: rgba(255,255,255,0.15) !important;
+      background: rgba(255,255,255,0.18) !important;
       border-color: var(--clr-white) !important;
     }
   }

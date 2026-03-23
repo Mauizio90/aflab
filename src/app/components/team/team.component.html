@@ -46,15 +46,14 @@
           </mat-chip-set>
           <p class="medico-desc">{{ m.descrizione }}</p>
 
-          <a
-            *ngIf="m.email"
-            [href]="'mailto:' + m.email"
-            class="medico-email"
+          <button
             mat-button
+            class="medico-prenota"
+            (click)="contattaMedico(m.specializzazione)"
           >
-            <mat-icon>email</mat-icon>
-            Contatta
-          </a>
+            <mat-icon>calendar_today</mat-icon>
+            Prenota visita
+          </button>
         </mat-card-content>
       </mat-card>
     </div>

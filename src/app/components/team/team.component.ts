@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SheetsService } from '../../services/sheets.service';
+import { PrenotazioneService } from '../../services/prenotazione.service';
 import { Medico } from '../../models/medico.model';
 
 @Component({
@@ -12,7 +13,10 @@ export class TeamComponent implements OnInit {
   loading = true;
   error = false;
 
-  constructor(private sheetsService: SheetsService) {}
+  constructor(
+    private sheetsService: SheetsService,
+    private prenotazioneService: PrenotazioneService,
+  ) {}
 
   ngOnInit(): void {
     this.sheetsService.getMedici().subscribe({
@@ -29,5 +33,13 @@ export class TeamComponent implements OnInit {
 
   getInitials(medico: Medico): string {
     return `${medico.nome.charAt(0)}${medico.cognome.charAt(0)}`.toUpperCase();
+  }
+
+  contattaMedico(specializzazione: string): void {
+    this.prenotazioneService.selezionaSpecialista(specializzazione);
+    setTimeout(() => {
+      const el = document.getElementById('prenota-form') ?? document.getElementById('contatti');
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
   }
 }

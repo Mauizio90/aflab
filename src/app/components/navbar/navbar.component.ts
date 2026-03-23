@@ -12,10 +12,11 @@ export class NavbarComponent {
   navLinks = [
     { label: 'Home',        anchor: 'home'      },
     { label: 'Il Centro',   anchor: 'chi-siamo' },
-    { label: 'Servizi',     anchor: 'servizi'   },
-    { label: 'Area Medica', anchor: 'servizi'   },
-    { label: 'Team',        anchor: 'team'      },
-    { label: 'Contatti',    anchor: 'contatti'  },
+    { label: 'Servizi',      anchor: 'servizi'     },
+    { label: 'Specialisti',  anchor: 'specialisti' },
+    { label: 'Team',        anchor: 'team'         },
+    { label: 'Recensioni',  anchor: 'recensioni'   },
+    { label: 'Contatti',    anchor: 'contatti'     },
   ];
 
   @HostListener('window:scroll')

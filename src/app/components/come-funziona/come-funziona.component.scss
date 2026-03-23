@@ -1,0 +1,158 @@
+.cf-wrap {
+  background: var(--clr-bg);
+  padding: 80px 0 72px;
+}
+
+// ── Header ────────────────────────────────────────────────────────────────────
+
+.section-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.section-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--clr-primary);
+  background: var(--clr-primary-light);
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 800;
+  color: var(--clr-text);
+  margin: 0 0 12px;
+}
+
+.title-underline {
+  width: 48px;
+  height: 4px;
+  background: var(--clr-primary);
+  border-radius: 2px;
+  margin: 0 auto;
+}
+
+// ── Grid 3 step ───────────────────────────────────────────────────────────────
+
+.cf-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0 48px;
+  position: relative;
+  margin-bottom: 52px;
+}
+
+// ── Singolo step ──────────────────────────────────────────────────────────────
+
+.cf-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+
+  // linea tratteggiata orizzontale tra step
+  &__connector {
+    position: absolute;
+    top: 36px;          // allineato al centro del cerchio
+    left: calc(50% + 48px);
+    width: calc(100% + 48px - 96px);
+    height: 2px;
+    border-top: 2px dashed var(--clr-border);
+    z-index: 0;
+  }
+
+  &__circle {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--clr-primary-light);
+    border: 3px solid var(--clr-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+    position: relative;
+    z-index: 1;
+    transition: background 0.25s, transform 0.25s;
+
+    mat-icon {
+      font-size: 30px;
+      width: 30px;
+      height: 30px;
+      color: var(--clr-primary);
+      transition: color 0.25s;
+    }
+  }
+
+  &:hover &__circle {
+    background: var(--clr-primary);
+    transform: translateY(-4px);
+    mat-icon { color: #fff; }
+  }
+
+  &__numero {
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--clr-primary);
+    margin-bottom: 8px;
+    opacity: 0.6;
+  }
+
+  &__titolo {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--clr-text);
+    margin: 0 0 10px;
+  }
+
+  &__desc {
+    font-size: 0.9rem;
+    color: var(--clr-text-light);
+    line-height: 1.7;
+    margin: 0;
+    max-width: 260px;
+  }
+}
+
+// ── CTA ───────────────────────────────────────────────────────────────────────
+
+.cf-cta {
+  display: flex;
+  justify-content: center;
+}
+
+.cf-cta__btn {
+  height: 50px !important;
+  padding: 0 2rem !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  mat-icon { font-size: 20px; width: 20px; height: 20px; }
+}
+
+// ── Responsive ────────────────────────────────────────────────────────────────
+
+@media (max-width: 900px) {
+  .cf-grid {
+    grid-template-columns: 1fr;
+    gap: 36px 0;
+    max-width: 400px;
+    margin: 0 auto 48px;
+  }
+
+  .cf-step__connector { display: none; }
+}

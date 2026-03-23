@@ -40,8 +40,8 @@ export class ContattiComponent implements OnInit, OnDestroy {
   ];
 
   info = [
-    { icon: 'location_on', label: 'Indirizzo',  valore: 'Via [da inserire], [Città]' },
-    { icon: 'phone',       label: 'Telefono',   valore: '000.000.0000' },
+    { icon: 'location_on', label: 'Indirizzo',  valore: 'Viale S. Cottoni, 44 – 07037 Sorso (SS)' },
+    { icon: 'phone',       label: 'Telefono',   valore: '339 196 9098' },
     { icon: 'email',       label: 'Email',      valore: 'info@aflab.it' },
     { icon: 'schedule',    label: 'Orari',      valore: 'Lun–Ven: 09:00–19:00' },
   ];

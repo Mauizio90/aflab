@@ -1,0 +1,63 @@
+// ─── Visibile solo su mobile ─────────────────────────────────────
+.floating-bar {
+  display: none;
+
+  @media (max-width: 900px) {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: var(--clr-footer);
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.25);
+    padding-bottom: env(safe-area-inset-bottom); // notch iphone
+  }
+
+  &__btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.9rem 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: background var(--transition);
+    min-height: 56px; // touch target
+
+    span { font-family: var(--font-body); }
+
+    mat-icon {
+      font-size: 20px;
+      height: 20px;
+      width: 20px;
+    }
+
+    &--call {
+      color: var(--clr-white);
+      background: var(--clr-primary);
+      &:hover, &:active { background: var(--clr-primary-dark); }
+    }
+
+    &--wa {
+      color: var(--clr-white);
+      background: var(--clr-whatsapp);
+      &:hover, &:active { background: #1da851; }
+    }
+  }
+
+  &__divider {
+    width: 1px;
+    background: rgba(255,255,255,0.15);
+    align-self: stretch;
+  }
+
+  &__wa-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+}

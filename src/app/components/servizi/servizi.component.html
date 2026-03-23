@@ -11,9 +11,17 @@
       <div class="srv-card__content">
         <mat-icon class="srv-card__icon">medical_services</mat-icon>
         <h3 class="srv-card__titolo">{{ s.titolo }}</h3>
-        <button mat-stroked-button class="srv-card__btn" (click)="scrollTo('contatti')">
-          SCOPRI DI PIÙ
-        </button>
+        <!-- Bottone per ogni specialista associato -->
+        <div class="srv-card__btns">
+          <button
+            *ngFor="let sp of getSpecialisti(s)"
+            mat-stroked-button
+            class="srv-card__btn"
+            (click)="apriSpecialista(sp)"
+          >
+            {{ sp }}
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -29,9 +37,16 @@
       <div class="srv-card__content">
         <mat-icon class="srv-card__icon">medical_services</mat-icon>
         <h3 class="srv-card__titolo">{{ s.titolo }}</h3>
-        <button mat-stroked-button class="srv-card__btn" (click)="scrollTo('contatti')">
-          SCOPRI DI PIÙ
-        </button>
+        <div class="srv-card__btns">
+          <button
+            *ngFor="let sp of getSpecialisti(s)"
+            mat-stroked-button
+            class="srv-card__btn"
+            (click)="apriSpecialista(sp)"
+          >
+            {{ sp }}
+          </button>
+        </div>
       </div>
     </div>
   </div>

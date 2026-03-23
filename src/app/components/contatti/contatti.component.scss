@@ -116,3 +116,9 @@
   .form-row { grid-template-columns: 1fr; }
   .contatti-form-wrap { padding: 1.5rem; }
 }
+
+@media (max-width: 480px) {
+  .contatti-wrap { padding: 40px 0; }
+  .contatti-form-wrap { padding: 1.2rem; border-radius: var(--radius-md); }
+  .submit-btn { height: 52px !important; font-size: 1rem !important; }
+}

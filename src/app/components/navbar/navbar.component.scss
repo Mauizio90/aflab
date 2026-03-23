@@ -197,8 +197,11 @@
 }
 
 @media (max-width: 600px) {
-  .topbar__info { display: none; }
-  .topbar__inner { justify-content: center; }
+  // Su mobile la floating bar gestisce chiama/whatsapp — topbar ridondante
+  .topbar { display: none; }
+
+  .navbar__inner { height: 60px; }
+  .mobile-link { min-height: 48px; } // touch target confortevole
 }
 
 // ─── Logo AF+ Lab ────────────────────────────────────────────────

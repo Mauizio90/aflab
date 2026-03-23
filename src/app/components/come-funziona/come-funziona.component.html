@@ -1,0 +1,32 @@
+<section class="cf-wrap">
+  <div class="container">
+
+    <div class="section-header">
+      <span class="section-label">Semplice e veloce</span>
+      <h2 class="section-title">Come funziona</h2>
+      <div class="title-underline"></div>
+    </div>
+
+    <div class="cf-grid">
+      <div class="cf-step" *ngFor="let p of passi; let i = index">
+        <!-- Connettore tra i passi (non sull'ultimo) -->
+        <div class="cf-step__connector" *ngIf="i < passi.length - 1"></div>
+
+        <div class="cf-step__circle">
+          <mat-icon>{{ p.icon }}</mat-icon>
+        </div>
+        <span class="cf-step__numero">{{ p.numero }}</span>
+        <h3 class="cf-step__titolo">{{ p.titolo }}</h3>
+        <p class="cf-step__desc">{{ p.desc }}</p>
+      </div>
+    </div>
+
+    <div class="cf-cta">
+      <button mat-raised-button class="btn-primary cf-cta__btn" (click)="scrollTo('prenota-form')">
+        <mat-icon>calendar_today</mat-icon>
+        Prenota la tua visita
+      </button>
+    </div>
+
+  </div>
+</section>

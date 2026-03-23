@@ -71,7 +71,11 @@ $centro-mec-theme: mat.define-light-theme((
 
 // ─── Reset & Base ────────────────────────────────────────────────
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%; // previene zoom testo su iOS
+}
 
 body {
   font-family: var(--font-body);
@@ -80,6 +84,17 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
 }
+
+// Spazio per la floating bar su mobile
+@media (max-width: 900px) {
+  body { padding-bottom: calc(56px + env(safe-area-inset-bottom)); }
+}
+
+// Previene zoom iOS su focus input (font-size < 16px triggera lo zoom)
+input, select, textarea { font-size: 16px !important; }
+
+// Rimuove il tap highlight blu su mobile
+a, button { -webkit-tap-highlight-color: transparent; }
 
 // ─── Typography helpers ──────────────────────────────────────────
 .section-title {
@@ -166,4 +181,11 @@ section.alt-bg { background: var(--clr-bg-alt); }
 // ─── Responsive ──────────────────────────────────────────────────
 @media (max-width: 768px) {
   section { padding: 50px 0; }
+  .container { padding: 0 1rem; }
+  .section-header { margin-bottom: 2rem; }
+}
+
+@media (max-width: 480px) {
+  section { padding: 40px 0; }
+  .section-title { font-size: clamp(1.4rem, 7vw, 2rem); }
 }

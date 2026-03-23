@@ -1,0 +1,240 @@
+// ─── Sezione Recensioni ───────────────────────────────────────────────────────
+
+.recensioni-wrap {
+  background: var(--clr-bg-alt);
+  padding: 80px 0 72px;
+}
+
+// ── Header condiviso ──────────────────────────────────────────────────────────
+
+.section-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.section-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--clr-primary);
+  background: var(--clr-primary-light);
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 800;
+  color: var(--clr-text);
+  margin: 0 0 12px;
+}
+
+.title-underline {
+  width: 48px;
+  height: 4px;
+  background: var(--clr-primary);
+  border-radius: 2px;
+  margin: 0 auto 0;
+}
+
+// ── Score bar ────────────────────────────────────────────────────────────────
+
+.score-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+
+  &__stars {
+    display: flex;
+    gap: 2px;
+    mat-icon {
+      font-size: 22px;
+      width: 22px;
+      height: 22px;
+      color: #f4b400;
+    }
+  }
+
+  &__num {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--clr-text);
+  }
+
+  &__label {
+    font-size: 0.9rem;
+    color: var(--clr-text-light);
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  &__glogo {
+    height: 20px;
+    object-fit: contain;
+    filter: grayscale(0);
+    opacity: 0.85;
+    transition: opacity 0.2s;
+    &:hover { opacity: 1; }
+  }
+}
+
+// ── Grid delle card ───────────────────────────────────────────────────────────
+
+.recensioni-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+// ── Singola card ─────────────────────────────────────────────────────────────
+
+.rec-card {
+  background: var(--clr-white);
+  border-radius: 14px;
+  padding: 32px 28px 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  // Virgolette grandi decorative
+  &__quote {
+    position: absolute;
+    top: 12px;
+    left: 22px;
+    font-size: 4rem;
+    line-height: 1;
+    color: var(--clr-primary-light);
+    font-family: Georgia, serif;
+    user-select: none;
+  }
+
+  &__testo {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: var(--clr-text);
+    margin: 0;
+    padding-top: 20px; // spazio per la virgoletta
+    flex: 1;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 8px;
+    border-top: 1px solid var(--clr-border);
+  }
+
+  &__avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  &__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  &__nome {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--clr-text);
+  }
+
+  &__stelle {
+    display: flex;
+    gap: 1px;
+    mat-icon {
+      font-size: 14px;
+      width: 14px;
+      height: 14px;
+      color: #f4b400;
+    }
+  }
+}
+
+// ── Loader ───────────────────────────────────────────────────────────────────
+
+.recensioni-loader {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+// ── CTA ──────────────────────────────────────────────────────────────────────
+
+.recensioni-cta {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-google-reviews {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border: 2px solid var(--clr-primary);
+  border-radius: 30px;
+  color: var(--clr-primary);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: background 0.2s, color 0.2s;
+
+  mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+
+  &:hover {
+    background: var(--clr-primary);
+    color: #fff;
+  }
+}
+
+// ── Responsive ───────────────────────────────────────────────────────────────
+
+@media (max-width: 768px) {
+  .recensioni-wrap {
+    padding: 56px 0 48px;
+  }
+
+  .recensioni-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rec-card {
+    padding: 28px 20px 20px;
+  }
+}

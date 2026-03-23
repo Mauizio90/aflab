@@ -13,7 +13,11 @@ export class SpecialistiService {
    * Recupera gli specialisti dal foglio Google Sheets pubblicato come CSV.
    *
    * Struttura attesa (prima riga = intestazioni):
-   * | Nome | Icon | Intro | Dettagli (separati da |) | Quando |
+   * | Nome | Icon | Intro | Dettagli (separati da |) | Quando | Servizio |
+   *
+   * La colonna "Servizio" è opzionale: se compilata, collega lo specialista
+   * alla card corrispondente nella sezione Servizi (es. "Nutrizione e Diabetologia").
+   * Deve corrispondere esattamente al titolo della card in servizi.component.ts.
    */
   getSpecialisti(): Observable<Specialista[]> {
     const url = environment.googleSheetsSpecialistiUrl;
@@ -36,7 +40,16 @@ export class SpecialistiService {
     const lines = csv.trim().split('\n');
     if (lines.length < 2) return [];
 
-    return lines.slice(1)
+    // Trova dinamicamente la riga header (quella che inizia con "Nome")
+    // così funziona anche se il foglio ha righe extra prima degli header
+    const headerIdx = lines.findIndex(l => {
+      const first = this.clean(this.splitCsvLine(l)[0]).toLowerCase();
+      return first === 'nome';
+    });
+
+    const dataStart = headerIdx !== -1 ? headerIdx + 1 : 1;
+
+    return lines.slice(dataStart)
       .map(line => this.parseLine(line))
       .filter(s => !!s.nome);
   }
@@ -50,6 +63,7 @@ export class SpecialistiService {
       intro:    this.clean(cols[2]),
       dettagli: dettagliRaw ? dettagliRaw.split('|').map(d => d.trim()).filter(Boolean) : [],
       quando:   this.clean(cols[4]),
+      servizio: this.clean(cols[5]) || undefined,   // ← colonna 6: "Servizio"
     };
   }
 

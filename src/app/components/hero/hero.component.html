@@ -4,7 +4,7 @@
     <!-- Colonna sinistra: testo -->
     <div class="hero__text">
       <h1 class="hero__title">Aflab Centro Medico</h1>
-      <p class="hero__subtitle">Struttura sanitaria moderna ad Alghero</p>
+      <p class="hero__subtitle">Poliambulatorio specialistico a Sorso (SS)</p>
 
       <p class="hero__desc">
         Prevenzione, diagnosi e cura della salute in un'unica struttura.<br>
@@ -14,11 +14,16 @@
       </p>
 
       <div class="hero__cta-row">
-        <a href="tel:+390000000000" mat-raised-button class="btn-primary hero__btn">
+        <button mat-raised-button class="btn-prenota hero__btn" (click)="scrollTo('prenota-form')">
+          <mat-icon>calendar_today</mat-icon>
+          PRENOTA ORA
+        </button>
+        <a href="tel:+393391969098" mat-raised-button class="btn-primary hero__btn">
           <mat-icon>phone</mat-icon>
-          TELEFONO
+          CHIAMA
         </a>
-        <a href="https://wa.me/390000000000" target="_blank" mat-raised-button class="btn-whatsapp hero__btn">
+        <a href="https://wa.me/393391969098?text=Ciao,%20vorrei%20prenotare%20una%20visita"
+           target="_blank" rel="noopener" mat-raised-button class="btn-whatsapp hero__btn">
           <mat-icon>chat</mat-icon>
           WHATSAPP
         </a>

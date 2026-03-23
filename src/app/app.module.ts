@@ -34,6 +34,10 @@ import { FooterComponent }     from './components/footer/footer.component';
 import { VisiteSpecialisticheComponent } from './components/visite-specialistiche/visite-specialistiche.component';
 import { InfoBarComponent }    from './components/info-bar/info-bar.component';
 import { CtaFinaleComponent }  from './components/cta-finale/cta-finale.component';
+import { FloatingCtaComponent } from './components/floating-cta/floating-cta.component';
+import { RecensioniComponent }    from './components/recensioni/recensioni.component';
+import { TrustBarComponent }      from './components/trust-bar/trust-bar.component';
+import { ComeFunzionaComponent }  from './components/come-funziona/come-funziona.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +52,10 @@ import { CtaFinaleComponent }  from './components/cta-finale/cta-finale.componen
     VisiteSpecialisticheComponent,
     InfoBarComponent,
     CtaFinaleComponent,
+    FloatingCtaComponent,
+    RecensioniComponent,
+    TrustBarComponent,
+    ComeFunzionaComponent,
   ],
   imports: [
     BrowserModule,

@@ -23,7 +23,7 @@ export class ComeFunzionaComponent {
       numero: '03',
       icon: 'local_hospital',
       titolo: 'Vieni in studio',
-      desc: 'Siamo in Viale S. Cottoni 44 a Sorso. Troverai un ambiente moderno, personale accogliente e tempi brevi.',
+      desc: 'Siamo in Viale Salvatore Cottoni 44 a Sorso. Troverai un ambiente moderno, personale accogliente e tempi brevi.',
     },
   ];
 

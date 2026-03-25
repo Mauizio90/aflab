@@ -47,10 +47,10 @@ export class ContattiComponent implements OnInit, OnDestroy {
   ];
 
   info = [
-    { icon: 'location_on', label: 'Indirizzo',  valore: 'Viale S. Cottoni, 44 – 07037 Sorso (SS)' },
-    { icon: 'phone',       label: 'Telefono',   valore: '339 196 9098' },
-    { icon: 'email',       label: 'Email',      valore: 'info@aflab.it' },
-    { icon: 'schedule',    label: 'Orari',      valore: 'Lun–Ven: 09:00–19:00' },
+    { icon: 'location_on', label: 'Indirizzo',  valore: 'Viale Salvatore Cottoni, 44 – 07037 Sorso (SS)' },
+    { icon: 'phone',       label: 'Telefono',   valore: '070 2079940  ·  339 196 9098' },
+    { icon: 'email',       label: 'Email',      valore: 'aeffelab22@gmail.com' },
+    { icon: 'schedule',    label: 'Orari',      valore: 'Prelievi 06:30–09:30  ·  Centro 09:00–19:30' },
   ];
 
   constructor(

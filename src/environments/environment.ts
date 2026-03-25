@@ -9,10 +9,10 @@ export const environment = {
   // 2. File → Condividi → Pubblica sul Web → seleziona "Valore separato da virgole (.csv)"
   // 3. Copia il link generato e incollalo qui sotto
   // URL CSV del foglio "Medici" (Team)
-  googleSheetsCsvUrl: 'https://docs.google.com/spreadsheets/d/1cFmEdvOpui6WauxULNLei4lX77IhRoWh/gviz/tq?tqx=out:csv&sheet=Medici',
+  googleSheetsCsvUrl: 'https://docs.google.com/spreadsheets/d/1IREZyRoCAn0-A-Hh01DtDKXL9xG7UjlU/gviz/tq?tqx=out:csv&sheet=Medici',
 
   // URL CSV del foglio "Specialisti" (Visite Specialistiche)
-  googleSheetsSpecialistiUrl: 'https://docs.google.com/spreadsheets/d/1cFmEdvOpui6WauxULNLei4lX77IhRoWh/gviz/tq?tqx=out:csv&sheet=Specialisti',
+  googleSheetsSpecialistiUrl: 'https://docs.google.com/spreadsheets/d/1IREZyRoCAn0-A-Hh01DtDKXL9xG7UjlU/gviz/tq?tqx=out:csv&sheet=Specialisti',
 
   // ── Google Maps / Places API ───────────────────────────────────
   // Per attivare le recensioni dinamiche da Google Maps:

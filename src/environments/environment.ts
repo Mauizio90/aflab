@@ -34,7 +34,7 @@ export const environment = {
   // Dashboard → Account → Public Key (copia Public Key)
   emailjs: {
     serviceId:  'service_gbx0pms',
-    templateId: 'template_39v10a6',
-    publicKey:  'ctEey7TyrNy4Yq2B9',
+    templateId: 'template_4yoar5i',
+    publicKey:  '0y5HNln0rgr_9Txnz',
   }
 };

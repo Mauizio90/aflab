@@ -33,7 +33,7 @@ export const environment = {
   // Dashboard → Email Templates → Create Template (copia Template ID)
   // Dashboard → Account → Public Key (copia Public Key)
   emailjs: {
-    serviceId:  'service_mbdin8j',
+    serviceId:  'service_gbx0pms',
     templateId: 'template_39v10a6',
     publicKey:  'ctEey7TyrNy4Yq2B9',
   }

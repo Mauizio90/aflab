@@ -36,5 +36,13 @@ export const environment = {
     serviceId:  'service_gbx0pms',
     templateId: 'template_1w38j8g',
     publicKey:  '0y5HNln0rgr_9Txnz',
-  }
+  },
+
+  // ── CallMeBot – notifiche WhatsApp ─────────────────────────────
+  // Numero che riceve i messaggi (senza + e senza spazi)
+  // API key ricevuta da CallMeBot dopo attivazione
+  callmebot: {
+    phone:  '393391969098',
+    apiKey: '6950628',
+  },
 };

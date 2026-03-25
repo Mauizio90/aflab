@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmailService } from '../../services/email.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SpamGuardService } from '../../services/spam-guard.service';
+import { WhatsappService } from '../../services/whatsapp.service';
 
 @Component({
   selector: 'app-hero',
@@ -47,6 +48,7 @@ export class HeroComponent implements OnDestroy {
     private emailService: EmailService,
     private snackBar: MatSnackBar,
     private spamGuard: SpamGuardService,
+    private whatsappService: WhatsappService,
     private cdr: ChangeDetectorRef,
   ) {
     this.form = this.fb.group({
@@ -94,6 +96,14 @@ export class HeroComponent implements OnDestroy {
       this.spamGuard.registraInvio({
         email:   this.form.value.email,
         servizio: this.form.value.visita || '',
+      });
+      this.whatsappService.inviaNotifica({
+        nome:     this.form.value.nome,
+        cognome:  this.form.value.cognome,
+        telefono: this.form.value.telefono,
+        email:    this.form.value.email,
+        servizio: this.form.value.visita || '',
+        messaggio: this.form.value.informazioni || '',
       });
       this.inviato = true;
       this.form.reset();

@@ -1,12 +1,22 @@
 export const environment = {
   production: true,
 
-  // Stessi valori di environment.ts — aggiornali prima del build di produzione
-  googleSheetsCsvUrl: 'INCOLLA_QUI_IL_TUO_URL_CSV_DI_GOOGLE_SHEETS',
+  googleSheetsCsvUrl: 'https://docs.google.com/spreadsheets/d/1IREZyRoCAn0-A-Hh01DtDKXL9xG7UjlU/gviz/tq?tqx=out:csv&sheet=Medici',
+  googleSheetsSpecialistiUrl: 'https://docs.google.com/spreadsheets/d/1IREZyRoCAn0-A-Hh01DtDKXL9xG7UjlU/gviz/tq?tqx=out:csv&sheet=Specialisti',
+
+  googleMaps: {
+    apiKey:  '',
+    placeId: 'ChIJa_mZpQtl3BIRqB3fk_BCKiw',
+  },
 
   emailjs: {
-    serviceId:  'INCOLLA_QUI_IL_SERVICE_ID_EMAILJS',
-    templateId: 'INCOLLA_QUI_IL_TEMPLATE_ID_EMAILJS',
-    publicKey:  'INCOLLA_QUI_LA_PUBLIC_KEY_EMAILJS',
-  }
+    serviceId:  'service_gbx0pms',
+    templateId: 'template_1w38j8g',
+    publicKey:  '0y5HNln0rgr_9Txnz',
+  },
+
+  callmebot: {
+    phone:  '393391969098',
+    apiKey: '6950628',
+  },
 };

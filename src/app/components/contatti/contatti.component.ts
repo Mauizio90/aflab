@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { EmailService } from '../../services/email.service';
 import { PrenotazioneService } from '../../services/prenotazione.service';
 import { SpamGuardService } from '../../services/spam-guard.service';
+import { WhatsappService } from '../../services/whatsapp.service';
 
 @Component({
   selector: 'app-contatti',
@@ -58,6 +59,7 @@ export class ContattiComponent implements OnInit, OnDestroy {
     private emailService: EmailService,
     private snackBar: MatSnackBar,
     private prenotazioneService: PrenotazioneService,
+    private whatsappService: WhatsappService,
     private spamGuard: SpamGuardService,
     private cdr: ChangeDetectorRef,
   ) {
@@ -110,6 +112,7 @@ export class ContattiComponent implements OnInit, OnDestroy {
       await this.emailService.inviaPrenotazione(this.form.value);
       // Registra l'invio riuscito
       this.spamGuard.registraInvio(this.form.value);
+      this.whatsappService.inviaNotifica(this.form.value);
       this.inviatoConSuccesso = true;
       this.form.reset();
     } catch {

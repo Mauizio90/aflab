@@ -23,8 +23,8 @@ export const environment = {
   //    oppure cerca "AF lab Sorso" su Google Maps, l'ID è nel link dopo "place/"
   // NOTA: finché apiKey è '', vengono usate le recensioni statiche di fallback.
   googleMaps: {
-    apiKey:  '',                        // ← incolla qui la chiave API
-    placeId: 'ChIJ...',                 // ← incolla qui il Place ID di AF lab
+    apiKey:  '',                        // ← incolla qui la chiave API quando disponibile
+    placeId: 'ChIJa_mZpQtl3BIRqB3fk_BCKiw', // AF lab – Sorso (SS)
   },
 
   // ── EmailJS ────────────────────────────────────────────────────

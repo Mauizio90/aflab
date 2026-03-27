@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "centro-mec": {
+    "aflab": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/centro-mec",
+            "outputPath": "dist/aflab",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -52,10 +52,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "centro-mec:build:production"
+              "buildTarget": "aflab:build:production"
             },
             "development": {
-              "buildTarget": "centro-mec:build:development"
+              "buildTarget": "aflab:build:development"
             }
           },
           "defaultConfiguration": "development"

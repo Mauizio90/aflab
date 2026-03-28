@@ -22,6 +22,15 @@
   margin-bottom: 0.8rem;
 }
 
+.footer__logo-img {
+  height: 80px;
+  width: auto;
+  display: block;
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px 20px;
+}
+
 .footer__logo-text {
   display: flex;
   flex-direction: column;

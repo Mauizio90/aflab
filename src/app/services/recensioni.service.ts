@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, from } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 
 export interface Recensione {
@@ -11,7 +13,7 @@ export interface Recensione {
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Recensioni reali raccolte da Google Maps (AF lab – Sorso SS)
-// Aggiornare quando si ottiene la chiave API Google Places
+// Usate come fallback se l'API non è disponibile o il credito è esaurito
 // ─────────────────────────────────────────────────────────────────────────────
 const RECENSIONI_STATICHE: Recensione[] = [
   {
@@ -64,82 +66,40 @@ const RECENSIONI_STATICHE: Recensione[] = [
   },
 ];
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Dichiarazioni globali per il SDK di Maps
-// ─────────────────────────────────────────────────────────────────────────────
-declare const google: any;
-
 @Injectable({ providedIn: 'root' })
 export class RecensioniService {
+
+  constructor(private http: HttpClient) {}
 
   getRecensioni(): Observable<Recensione[]> {
     const { apiKey, placeId } = environment.googleMaps;
 
-    // Se non è ancora configurata la chiave API → usa le recensioni statiche
-    if (!apiKey || apiKey === '' || placeId.startsWith('ChIJ...') || placeId === '') {
-      return of(RECENSIONI_STATICHE);
-    }
+    // Senza API key → usa subito le statiche
+    if (!apiKey) return of(RECENSIONI_STATICHE);
 
-    return from(this.caricaDaMapsApi(apiKey, placeId));
-  }
-
-  // ── Google Places API via Maps JavaScript SDK ─────────────────────────────
-  private async caricaDaMapsApi(apiKey: string, placeId: string): Promise<Recensione[]> {
-    try {
-      await this.caricaScriptMaps(apiKey);
-
-      return new Promise<Recensione[]>((resolve) => {
-        const service = new google.maps.places.PlacesService(
-          document.createElement('div')
-        );
-
-        service.getDetails(
-          { placeId, fields: ['reviews'], language: 'it' },
-          (place: any, status: string) => {
-            if (status === 'OK' && place?.reviews?.length) {
-              const recensioni: Recensione[] = place.reviews
-                .filter((r: any) => r.text?.trim())
-                .map((r: any) => ({
-                  nome: r.author_name ?? 'Paziente',
-                  iniziale: (r.author_name ?? 'P')[0].toUpperCase(),
-                  stelle: r.rating ?? 5,
-                  testo: r.text.trim(),
-                }));
-              resolve(recensioni.length ? recensioni : RECENSIONI_STATICHE);
-            } else {
-              resolve(RECENSIONI_STATICHE);
-            }
-          }
-        );
-      });
-    } catch {
-      return RECENSIONI_STATICHE;
-    }
-  }
-
-  // ── Carica dinamicamente il SDK di Maps ──────────────────────────────────
-  private caricaScriptMaps(apiKey: string): Promise<void> {
-    return new Promise((resolve, reject) => {
-      // Già caricato
-      if (typeof google !== 'undefined' && google?.maps?.places) {
-        resolve();
-        return;
-      }
-      // Script già inserito nel DOM ma non ancora pronto
-      const existente = document.getElementById('gmaps-sdk');
-      if (existente) {
-        existente.addEventListener('load', () => resolve());
-        existente.addEventListener('error', reject);
-        return;
-      }
-      // Inserisci il tag <script>
-      const script = document.createElement('script');
-      script.id   = 'gmaps-sdk';
-      script.src  = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&language=it`;
-      script.async = true;
-      script.onload = () => resolve();
-      script.onerror = reject;
-      document.head.appendChild(script);
+    // Places API (New) – chiamata HTTP REST, niente SDK
+    const url = `https://places.googleapis.com/v1/places/${placeId}`;
+    const headers = new HttpHeaders({
+      'X-Goog-Api-Key': apiKey,
+      'X-Goog-FieldMask': 'reviews',
     });
+
+    return this.http.get<any>(url, { headers }).pipe(
+      map(res => {
+        const reviews: any[] = res.reviews ?? [];
+        const recensioni: Recensione[] = reviews
+          .filter((r: any) => r.text?.text?.trim())
+          .map((r: any) => ({
+            nome:     r.authorAttribution?.displayName ?? 'Paziente',
+            iniziale: (r.authorAttribution?.displayName ?? 'P')[0].toUpperCase(),
+            stelle:   r.rating ?? 5,
+            testo:    r.text.text.trim(),
+          }));
+        // Se l'API non restituisce recensioni → usa statiche
+        return recensioni.length ? recensioni : RECENSIONI_STATICHE;
+      }),
+      // Credito esaurito, quota superata, billing non attivo → usa statiche
+      catchError(() => of(RECENSIONI_STATICHE))
+    );
   }
 }

@@ -5,7 +5,7 @@ export const environment = {
   googleSheetsSpecialistiUrl: 'https://docs.google.com/spreadsheets/d/1IREZyRoCAn0-A-Hh01DtDKXL9xG7UjlU/gviz/tq?tqx=out:csv&sheet=Specialisti',
 
   googleMaps: {
-    apiKey:  '',
+    apiKey:  'AIzaSyBMtX2GvcfJUBAOPpT42_fKUIaH29-Wu3U',
     placeId: 'ChIJa_mZpQtl3BIRqB3fk_BCKiw',
   },
 

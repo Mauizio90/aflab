@@ -70,7 +70,7 @@
   &__inner {
     display: flex;
     align-items: center;
-    height: 70px;
+    height: 90px;
     gap: 1.5rem;
   }
 
@@ -136,7 +136,7 @@
   border-bottom: 2px solid transparent;
   display: inline-flex;
   align-items: center;
-  height: 70px;
+  height: 90px;
 
   &:hover {
     color: var(--clr-primary);
@@ -204,7 +204,19 @@
   .mobile-link { min-height: 48px; } // touch target confortevole
 }
 
-// ─── Logo AF+ Lab ────────────────────────────────────────────────
+// ─── Logo SVG ────────────────────────────────────────────────────
+.navbar__logo-img {
+  height: 70px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+@media (max-width: 600px) {
+  .navbar__logo-img { height: 54px; }
+}
+
+// ─── Logo AF+ Lab (vecchio, tenuto per compatibilità) ─────────────
 .logo-af {
   display: flex;
   flex-direction: column;

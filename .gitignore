@@ -5,8 +5,9 @@ node_modules/
 dist/
 .angular/
 
-# Environment (se contiene dati sensibili, commentare la riga sotto)
-# src/environments/environment.prod.ts
+# Environment – contiene API keys, NON committare
+src/environments/environment.prod.ts
+src/environments/environment.ts
 
 # OS
 .DS_Store

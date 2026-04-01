@@ -193,6 +193,3 @@ Modifica l'array `valori` in `src/app/components/chi-siamo/chi-siamo.component.t
 
 ---
 
-## 📞 Supporto
-
-Per problemi tecnici, contattare lo sviluppatore.

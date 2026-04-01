@@ -1,9 +1,32 @@
 <section class="hero">
+
+  <!-- Carosello fotografico di sfondo -->
+  <div class="hero__carousel">
+    <div
+      *ngFor="let slide of slides; let i = index"
+      class="hero__slide"
+      [class.active]="i === currentSlide"
+      [style.background-image]="'url(' + slide + ')'"
+    ></div>
+    <div class="hero__overlay"></div>
+  </div>
+
+  <!-- Pallini navigazione -->
+  <div class="hero__dots">
+    <button
+      *ngFor="let slide of slides; let i = index"
+      class="hero__dot"
+      [class.active]="i === currentSlide"
+      (click)="goToSlide(i)"
+      [attr.aria-label]="'Foto ' + (i+1)"
+    ></button>
+  </div>
+
   <div class="hero__inner container">
 
     <!-- Colonna sinistra: testo -->
     <div class="hero__text">
-      <h1 class="hero__title">Aflab Centro Medico</h1>
+      <h1 class="hero__title">AFlab Centro Medico</h1>
       <p class="hero__subtitle">Poliambulatorio specialistico a Sorso (SS)</p>
 
       <p class="hero__desc">

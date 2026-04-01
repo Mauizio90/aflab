@@ -1,4 +1,4 @@
-import { Component, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmailService } from '../../services/email.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -10,13 +10,23 @@ import { WhatsappService } from '../../services/whatsapp.service';
   templateUrl: './hero.component.html',
   styleUrls: ['./hero.component.scss'],
 })
-export class HeroComponent implements OnDestroy {
+export class HeroComponent implements OnInit, OnDestroy {
   form: FormGroup;
   invioInCorso = false;
   inviato      = false;
   bloccatoMsg: string | null = null;
   secondiRimanenti = 0;
 
+  // ── Carosello ────────────────────────────────────────────────────
+  slides = [
+    'assets/foto/hero-1.jpg',
+    'assets/foto/hero-2.jpg',
+    'assets/foto/hero-3.jpg',
+    'assets/foto/hero-4.jpg',
+    'assets/foto/hero-5.jpg',
+  ];
+  currentSlide = 0;
+  private slideInterval: ReturnType<typeof setInterval> | null = null;
   private countdownInterval: ReturnType<typeof setInterval> | null = null;
 
   visitaOptions = [
@@ -61,9 +71,19 @@ export class HeroComponent implements OnDestroy {
     });
   }
 
+  ngOnInit(): void {
+    this.slideInterval = setInterval(() => {
+      this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+      this.cdr.detectChanges();
+    }, 5000);
+  }
+
   ngOnDestroy(): void {
     this.clearCountdown();
+    if (this.slideInterval) clearInterval(this.slideInterval);
   }
+
+  goToSlide(i: number): void { this.currentSlide = i; }
 
   async onSubmit(): Promise<void> {
     if (this.form.invalid) { this.form.markAllAsTouched(); return; }

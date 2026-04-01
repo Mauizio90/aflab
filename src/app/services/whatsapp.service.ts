@@ -22,7 +22,7 @@ export class WhatsappService {
     if (!phone || !apiKey) return;
 
     const righe = [
-      '📋 Nuova prenotazione Aflab',
+      '📋 Nuova prenotazione AFlab',
       `👤 ${dati.nome} ${dati.cognome}`,
       `📞 ${dati.telefono}`,
       `🏥 ${dati.servizio || 'Non specificato'}`,

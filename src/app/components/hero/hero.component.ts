@@ -24,6 +24,8 @@ export class HeroComponent implements OnInit, OnDestroy {
     'assets/foto/sala-attesa.jpg',
     'assets/foto/hero-4.jpg',
     'assets/foto/studio-3.jpg',
+    'assets/foto/poltrona.jpg',
+    'assets/foto/lettino.jpg',
   ];
   currentSlide = 0;
   private slideInterval: ReturnType<typeof setInterval> | null = null;

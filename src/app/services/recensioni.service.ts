@@ -74,8 +74,12 @@ export class RecensioniService {
   getRecensioni(): Observable<Recensione[]> {
     const { apiKey, placeId } = environment.googleMaps;
 
-    // Senza API key → usa subito le statiche
-    if (!apiKey) return of(RECENSIONI_STATICHE);
+    if (!apiKey) {
+      console.warn('[Recensioni] ⚠️ Nessuna API key → STATICHE');
+      return of(RECENSIONI_STATICHE);
+    }
+
+    console.log('[Recensioni] 🔑 Chiamo Google Places API...');
 
     // Places API (New) – chiamata HTTP REST, niente SDK
     const url = `https://places.googleapis.com/v1/places/${placeId}`;
@@ -88,18 +92,26 @@ export class RecensioniService {
       map(res => {
         const reviews: any[] = res.reviews ?? [];
         const recensioni: Recensione[] = reviews
-          .filter((r: any) => r.text?.text?.trim())
+          .filter((r: any) => r.text?.text?.trim() && (r.rating ?? 0) >= 4)
           .map((r: any) => ({
             nome:     r.authorAttribution?.displayName ?? 'Paziente',
             iniziale: (r.authorAttribution?.displayName ?? 'P')[0].toUpperCase(),
             stelle:   r.rating ?? 5,
             testo:    r.text.text.trim(),
           }));
+        if (recensioni.length) {
+          console.log('[Recensioni] ✅ GOOGLE API – ' + recensioni.length + ' recensioni caricate');
+        } else {
+          console.warn('[Recensioni] ⚠️ API ok ma vuota → STATICHE');
+        }
         // Se l'API non restituisce recensioni → usa statiche
         return recensioni.length ? recensioni : RECENSIONI_STATICHE;
       }),
       // Credito esaurito, quota superata, billing non attivo → usa statiche
-      catchError(() => of(RECENSIONI_STATICHE))
+      catchError((err) => {
+        console.error('[Recensioni] ❌ Errore API:', err.status, err.message, '→ STATICHE');
+        return of(RECENSIONI_STATICHE);
+      })
     );
   }
 }

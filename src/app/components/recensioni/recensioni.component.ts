@@ -24,7 +24,8 @@ export class RecensioniComponent implements OnInit {
         this.recensioni = data;
         this.caricamento = false;
       },
-      error: () => {
+      error: (err) => {
+        console.error('[Recensioni] ❌ Errore:', err);
         this.caricamento = false;
       }
     });

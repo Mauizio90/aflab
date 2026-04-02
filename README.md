@@ -2,6 +2,8 @@
 
 Sito web del Centro Medico Polispecialistico MeC di Alghero.
 
+📦 **Repository GitHub:** [https://github.com/Mauizio90/aflab](https://github.com/Mauizio90/aflab)
+
 ---
 
 ## 🚀 Avvio rapido
@@ -190,6 +192,19 @@ Modifica l'array `info` in `src/app/components/contatti/contatti.component.ts`
 
 ### Cambiare i valori "Chi Siamo"
 Modifica l'array `valori` in `src/app/components/chi-siamo/chi-siamo.component.ts`
+
+---
+
+## 🔑 Accesso ai servizi esterni
+
+Per tutti i servizi esterni collegati a questo progetto, le credenziali di accesso (username e password) sono le **stesse dell'account Google del cliente**:
+
+| Servizio | URL | Credenziali |
+|----------|-----|-------------|
+| **Netlify** | [https://app.netlify.com](https://app.netlify.com) | Stesse dell'account Google del cliente |
+| **EmailJS** | [https://dashboard.emailjs.com](https://dashboard.emailjs.com) | Stesse dell'account Google del cliente |
+
+> **Nota:** L'accesso a questi servizi avviene tramite "Accedi con Google" oppure con l'email e la password del medesimo account Google.
 
 ---
 

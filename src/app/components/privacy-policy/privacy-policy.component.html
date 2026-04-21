@@ -1,0 +1,86 @@
+<div class="modal-overlay" *ngIf="visible" (click)="close()">
+  <div class="modal-box" (click)="$event.stopPropagation()">
+
+    <button class="modal-close" (click)="close()" aria-label="Chiudi">
+      <mat-icon>close</mat-icon>
+    </button>
+
+    <div class="modal-content">
+      <h1>Privacy Policy</h1>
+      <p class="last-update">Ultimo aggiornamento: aprile 2025</p>
+
+      <h2>1. Titolare del trattamento</h2>
+      <p>
+        AFlab Centro Medico Polispecialistico<br>
+        Viale Salvatore Cottoni, 44 – 07037 Sorso (SS)<br>
+        P.IVA 02913680902<br>
+        Direttore Sanitario: Dott.ssa Giada Flore<br>
+        E-mail: <a href="mailto:aeffelab22@gmail.com">aeffelab22&#64;gmail.com</a><br>
+        Tel: <a href="tel:+390702079940">070 2079940</a>
+      </p>
+
+      <h2>2. Dati raccolti e finalità</h2>
+      <p>
+        Il sito raccoglie i dati personali esclusivamente attraverso il <strong>form di prenotazione</strong> presente nella sezione "Contatti". I dati richiesti sono:
+      </p>
+      <ul>
+        <li><strong>Nome e cognome</strong> – per identificare il paziente</li>
+        <li><strong>Indirizzo e-mail</strong> – per inviare conferma della richiesta</li>
+        <li><strong>Numero di telefono</strong> – per contattare il paziente e confermare l'appuntamento</li>
+        <li><strong>Servizio richiesto</strong> – per indirizzare la prenotazione al reparto corretto</li>
+        <li><strong>Messaggio libero</strong> – per raccogliere eventuali informazioni aggiuntive</li>
+      </ul>
+      <p>
+        Questi dati vengono trattati al solo scopo di <strong>gestire la richiesta di prenotazione</strong> e contattare il paziente per confermare o organizzare l'appuntamento. Non vengono utilizzati per finalità di marketing o profilazione.
+      </p>
+
+      <h2>3. Base giuridica del trattamento</h2>
+      <p>
+        Il trattamento si basa sul consenso dell'interessato (art. 6, par. 1, lett. a del Regolamento UE 2016/679 – GDPR) e, ove applicabile, sull'esecuzione di misure precontrattuali adottate su richiesta dell'interessato (art. 6, par. 1, lett. b).
+      </p>
+
+      <h2>4. Modalità di trattamento e conservazione</h2>
+      <p>
+        I dati inviati tramite il form vengono trasmessi via <strong>EmailJS</strong> (servizio di terze parti per l'invio di e-mail) e recapitati alla casella di posta del Centro. Non vengono archiviati su database propri del sito. I dati ricevuti via e-mail vengono conservati per il tempo strettamente necessario alla gestione dell'appuntamento.
+      </p>
+      <p>
+        Il sito visualizza inoltre le <strong>recensioni pubbliche</strong> della struttura tramite le <strong>API di Google Places</strong>. Tali dati sono pubblicamente disponibili su Google Maps e non comportano alcun trattamento di dati dell'utente visitatore.
+      </p>
+
+      <h2>5. Terze parti coinvolte</h2>
+      <ul>
+        <li><strong>EmailJS</strong> (emailjs.com) – invio delle richieste di prenotazione via e-mail. <a href="https://www.emailjs.com/legal/privacy-policy/" target="_blank" rel="noopener">Privacy Policy EmailJS</a></li>
+        <li><strong>Google Places API</strong> (Google LLC) – recupero delle recensioni pubbliche. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy Google</a></li>
+        <li><strong>Netlify</strong> (Netlify Inc.) – hosting del sito web. <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener">Privacy Policy Netlify</a></li>
+        <li><strong>CallMeBot</strong> – notifiche WhatsApp interne al centro. Non tratta dati degli utenti visitatori.</li>
+      </ul>
+
+      <h2>6. Comunicazione e diffusione dei dati</h2>
+      <p>
+        I dati personali non vengono ceduti, venduti o comunicati a terzi, salvo quanto strettamente necessario per l'erogazione dei servizi descritti sopra (es. trasmissione via EmailJS) e salvo obblighi di legge.
+      </p>
+
+      <h2>7. Diritti dell'interessato</h2>
+      <p>
+        Ai sensi degli artt. 15-22 del GDPR, l'utente ha il diritto di:
+      </p>
+      <ul>
+        <li>accedere ai propri dati personali</li>
+        <li>richiederne la rettifica o la cancellazione</li>
+        <li>opporsi al trattamento o richiederne la limitazione</li>
+        <li>richiedere la portabilità dei dati</li>
+        <li>revocare il consenso in qualsiasi momento</li>
+        <li>proporre reclamo al Garante per la protezione dei dati personali (<a href="https://www.garanteprivacy.it" target="_blank" rel="noopener">www.garanteprivacy.it</a>)</li>
+      </ul>
+      <p>
+        Per esercitare questi diritti è possibile contattare il Titolare all'indirizzo: <a href="mailto:aeffelab22@gmail.com">aeffelab22&#64;gmail.com</a>
+      </p>
+
+      <h2>8. Modifiche alla presente policy</h2>
+      <p>
+        Il Titolare si riserva il diritto di modificare la presente informativa in qualsiasi momento. Le modifiche saranno pubblicate su questa pagina con aggiornamento della data in calce.
+      </p>
+    </div>
+
+  </div>
+</div>

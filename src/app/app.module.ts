@@ -38,6 +38,8 @@ import { FloatingCtaComponent } from './components/floating-cta/floating-cta.com
 import { RecensioniComponent }    from './components/recensioni/recensioni.component';
 import { TrustBarComponent }      from './components/trust-bar/trust-bar.component';
 import { ComeFunzionaComponent }  from './components/come-funziona/come-funziona.component';
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
+import { CookiePolicyComponent }  from './components/cookie-policy/cookie-policy.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { ComeFunzionaComponent }  from './components/come-funziona/come-funziona
     RecensioniComponent,
     TrustBarComponent,
     ComeFunzionaComponent,
+    PrivacyPolicyComponent,
+    CookiePolicyComponent,
   ],
   imports: [
     BrowserModule,

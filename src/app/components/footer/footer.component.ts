@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-footer',
@@ -17,7 +18,12 @@ export class FooterComponent {
     { label: 'Contatti',                  anchor: 'contatti'   },
   ];
 
+  constructor(private modal: ModalService) {}
+
   scrollTo(anchor: string): void {
     document.getElementById(anchor)?.scrollIntoView({ behavior: 'smooth' });
   }
+
+  openPrivacy(): void  { this.modal.openPrivacy(); }
+  openCookie(): void   { this.modal.openCookie(); }
 }

@@ -49,7 +49,7 @@ export class ContattiComponent implements OnInit, OnDestroy {
 
   info = [
     { icon: 'location_on', label: 'Indirizzo',  valore: 'Viale Salvatore Cottoni, 44 – 07037 Sorso (SS)' },
-    { icon: 'phone',       label: 'Telefono',   valore: '070 2079940  ·  339 196 9098' },
+    { icon: 'phone',       label: 'Telefono',   valore: '070 2079940  ·  375 906 9189' },
     { icon: 'email',       label: 'Email',      valore: 'aeffelab22@gmail.com' },
     { icon: 'schedule',    label: 'Orari',      valore: 'Centro 09:00-13:00, 15:30-19:30  ·  Sab/Dom Chiuso' },
   ];
